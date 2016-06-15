@@ -118,7 +118,7 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 			}
 ////
 			
-			$_description = $p->getDescription() . "  " . $p->getShortDescription();
+			$_description = $p->getName() . " " . $p->getDescription() . "  " . $p->getShortDescription();
 			$_description = $this->getField($_description);
 			$_description = trim($_description);
 			$_description = substr($_description, 0,15);
