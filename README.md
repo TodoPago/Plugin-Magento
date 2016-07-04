@@ -16,9 +16,9 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
 
 - Incorporación de composer.json y modman para manejo de dependencias - [barbazul](https://github.com/barbazul)
  - [6a6a972](https://github.com/barbazul/Plugin-Magento/commit/6a6a972dc9720dc5e932376fecada215cd6ca9b1)
-- Agregado el nombre del producto en la descripción que se envía al gateway- [dsueiro](https://github.com/dsueiro)
+- Agregado el nombre del producto en la descripción que se envía al gateway - [dsueiro](https://github.com/dsueiro)
  - [9dd6b5f](https://github.com/barbazul/Plugin-Magento/commit/9dd6b5fa91cca74aea01aed78ad4d57defd963e6)
-- Eliminado un rewrite sobre el bloque de agreements que rompía el funcionamiento de los agreements de magento [augustojbusso](https://github.com/augustojbusso)
+- Eliminado un rewrite sobre el bloque de agreements que rompía el funcionamiento de los agreements de magento - [augustojbusso](https://github.com/augustojbusso)
  - [53f1992](https://github.com/barbazul/Plugin-Magento/commit/53f1992bcc579da7b4c9c69081648a36440aa247)
  - [PR-1](https://github.com/barbazul/Plugin-Magento/pull/1)
 
