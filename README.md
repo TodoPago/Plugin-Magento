@@ -21,6 +21,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
 - Eliminado un rewrite sobre el bloque de agreements que rompía el funcionamiento de los agreements de magento - [augustojbusso](https://github.com/augustojbusso)
  - [53f1992](https://github.com/barbazul/Plugin-Magento/commit/53f1992bcc579da7b4c9c69081648a36440aa247)
  - [PR-1](https://github.com/barbazul/Plugin-Magento/pull/1)
+- Fix del valor default faltante en la definicion de Todopago_Modulodepago2_Helper_Connector::getModo - [barbazul](https://github.com/barbazul)
+ - [33049f4](https://github.com/barbazul/Plugin-Magento/commit/33049f42cb16677d3cf8af14c0ecb5120ebf168b)
 
 
 <a name="inicio"></a>
