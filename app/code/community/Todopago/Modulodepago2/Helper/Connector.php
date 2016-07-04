@@ -21,10 +21,10 @@ class Todopago_Modulodepago2_Helper_Connector extends Mage_Core_Helper_Abstract
 
 		return $todopago_connector;
 	}
-	
-	public function getModo($modo) {
+
+	public function getModo($modo = null) {
 		if($modo != null) return $modo;
-		
+
 		if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
 			return "test";
 		}
