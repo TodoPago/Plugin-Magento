@@ -29,11 +29,6 @@
       <modulodepago2>
         <class>Todopago_Modulodepago2_Block</class>
       </modulodepago2>
-      <checkout>
-        <rewrite>
-          <agreements>Todopago_Modulodepago2_Block_Checkout_Agreements</agreements>
-        </rewrite>
-      </checkout>
     </blocks>
     <resources>
       <categoryattribute1425228037_setup>
