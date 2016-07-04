@@ -70,15 +70,8 @@ class FraudControlValidator {
 	}
 
 	protected function clean($field) {
-		$field = htmlspecialchars_decode($field);
-		$field = strip_tags($field);
-		$re = "/\\[(.*?)\\]|<(.*?)\\>/i"; 
-		$subst = "";
-		$field = preg_replace($re, $subst, $field);
-		$field = preg_replace('/[\x00-\x1f]/','',$field);
-		$field = preg_replace('/[\xc2-\xdf][\x80-\xbf]/','',$field);
-		$replace = array("\n","\r",'\n','\r','&nbsp;','&','<','>');
-		$field = str_replace($replace, '', $field);
+		$field = preg_replace('![^'.preg_quote('-').'a-zA-Z0-_9@.\s]+!', '', $field);
+		$field = str_replace(array("<",">","="), "", $field);
 		return $field;
 	}
 
@@ -157,6 +150,7 @@ class FraudControlValidator {
 		$res = array();
 		if(count($arr) > $cant) {
 			for($i = 0; $i < $cant; $i++) {
+				$arr[$i] = $this->clean($res[$i]);
 				if($number) {
 					$res[$i] = $this->amount($arr[$i]);
 				} else {
@@ -165,6 +159,7 @@ class FraudControlValidator {
 			}
 		} else {
 			foreach($arr as $key => $item) {
+				$item = $this->clean($item);
 				if($number) {
 					$res[$key] = $this->amount($item);
 				} else {

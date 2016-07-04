@@ -4,7 +4,7 @@
 		<payment>
 			<groups>
 				<modulodepago2 translate="label comment" module="paygate">
-					<label>Todo Pago v1.4.0</label>
+					<label>Todo Pago v1.4.1</label>
 					<front-end>text</front-end>
 					<sort_order>2</sort_order>
 					<show_in_default>1</show_in_default>
