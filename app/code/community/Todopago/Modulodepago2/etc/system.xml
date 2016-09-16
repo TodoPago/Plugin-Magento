@@ -4,9 +4,9 @@
 		<payment>
 			<groups>
 				<modulodepago2 translate="label comment" module="paygate">
-					<label>Todo Pago v1.4.1</label>
+					<label>Todo Pago v1.5.1</label>
 					<front-end>text</front-end>
-					<sort_order>2</sort_order>
+					<sort_order>1</sort_order>
 					<show_in_default>1</show_in_default>
 					<show_in_website>1</show_in_website>
 					<show_in_store>1</show_in_store>
@@ -26,7 +26,7 @@
 								<comment>Nombre con el que aparecera el Medio de Pago
 								</comment>
 								<frontend_type>text</frontend_type>
-								<sort_order>40</sort_order>
+								<sort_order>11</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
@@ -37,7 +37,7 @@
 								<source_model>modulodepago2/system_config_source_csverticales
 								</source_model>
 								<comment>La elección del segmento determina los tipos de datos a enviar</comment>
-								<sort_order>42</sort_order>
+								<sort_order>12</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
@@ -57,7 +57,7 @@
 								<label>Dead Line</label>
 								<frontend_type>text</frontend_type>
 								<comment><![CDATA[días máximos para la entrega]]></comment>
-								<sort_order>44</sort_order>
+								<sort_order>13</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
@@ -68,7 +68,7 @@
 								<label>Ambiente Developers o Producción</label>
 								<frontend_type>select</frontend_type>
 								<source_model>modulodepago2/system_config_source_testproduccion</source_model>
-								<sort_order>50</sort_order>
+								<sort_order>15</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
@@ -79,26 +79,48 @@
 							<label>Utilizar formulario híbrido</label>
 							<frontend_type>select</frontend_type>
 							<source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>60</sort_order>
+							<sort_order>16</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</hibrido>
 						
-							<todopago_modo translate="label" type="group">
+						<cuotas translate="label">
+							<label>Cantidad máxima de Cuotas para ofrecer</label>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_cuotas</source_model>
+							<comment><![CDATA[cantidad máxima de cuotas que mostrará el formulario de pago]]></comment>
+							<sort_order>17</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cuotas>
+						<cuotas_enabled translate="label">
+						    <label>Habilitar maximo de cuotas</label>
+						    <frontend_type>select</frontend_type>
+						    <source_model>adminhtml/system_config_source_yesno</source_model>
+						    <sort_order>18</sort_order>
+						    <show_in_default>1</show_in_default>
+						    <show_in_website>1</show_in_website>
+						    <show_in_store>1</show_in_store>
+						</cuotas_enabled>
+
+							<label_ambiente>
 								<label>CONFIGURACION - AMBIENTE DEVELOPERS / PRODUCCION</label>
-								<sort_order>80</sort_order>
+								<frontend_type>label</frontend_type>
+								<sort_order>20</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
-								<fields>
+							</label_ambiente>
+
 									<credential_button  translate="label">
 										<label><![CDATA[<b><u>Obtener Credenciales</b></u>]]></label>
 										<button_label>Produccion</button_label>
 										<button_url><![CDATA[adminhtml/credential/production]]></button_url>
 										<sandbox_button_label>Developers</sandbox_button_label>
 										<sandbox_button_url><![CDATA[adminhtml/credential/developers]]></sandbox_button_url>
-										<sort_order>80</sort_order>
+										<sort_order>21</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>								
@@ -108,7 +130,7 @@
 										<label><![CDATA[<b><u>Ambiente Producción:
 										</b></u>]]></label>
 										<frontend_type>label</frontend_type>
-										<sort_order>81</sort_order>
+										<sort_order>22</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -119,7 +141,7 @@
 										</validate>
 										<comment>Número de Comercio provisto por Todo Pago</comment>
 										<frontend_type>text</frontend_type>
-										<sort_order>84</sort_order>
+										<sort_order>23</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -128,7 +150,7 @@
 										<label>Security code</label>
 										<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
 										<frontend_type>text</frontend_type>
-										<sort_order>85</sort_order>
+										<sort_order>24</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -137,7 +159,7 @@
 										<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
 											<label>API Keys</label>
 											<frontend_type>text</frontend_type>
-											<sort_order>85</sort_order>
+											<sort_order>25</sort_order>
 											<show_in_default>1</show_in_default>
 											<show_in_website>1</show_in_website>
 											<show_in_store>1</show_in_store>
@@ -146,7 +168,7 @@
 										<label><![CDATA[<b><u>Ambiente Developers:
 										</b></u>]]></label>
 										<frontend_type>label</frontend_type>
-										<sort_order>86</sort_order>
+										<sort_order>26</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -158,7 +180,7 @@
 										</validate>
 										<comment>Número de Comercio provisto por Todo Pago</comment>
 										<frontend_type>text</frontend_type>
-										<sort_order>89</sort_order>
+										<sort_order>27</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -168,7 +190,7 @@
 										<label>Security code (Developers)</label>
 										<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
 										<frontend_type>text</frontend_type>
-										<sort_order>90</sort_order>
+										<sort_order>28</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -177,22 +199,22 @@
 										<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
 											<label>API Keys</label>
 											<frontend_type>text</frontend_type>
-											<sort_order>91</sort_order>
+											<sort_order>29</sort_order>
 											<show_in_default>1</show_in_default>
 											<show_in_website>1</show_in_website>
 											<show_in_store>1</show_in_store>
 									</apikey_test>
-								</fields>
-							</todopago_modo>
 
-							<todopago_avanzada translate="label" type="group">
+
+							<todopago_avanzada>
 								<label>CONFIGURACION - ESTADOS DEL PEDIDO</label>
-								<frontend_type>text</frontend_type>
-								<sort_order>500</sort_order>
+								<frontend_type>label</frontend_type>
+								<sort_order>30</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
-								<fields>
+						</todopago_avanzada>
+
 									<order_status translate="label">
 										<label>Estado del Pedido cuando la transacción esta "en proceso"
 										</label>
@@ -200,7 +222,7 @@
 										<frontend_type>select</frontend_type>
 										<source_model>adminhtml/system_config_source_order_status
 										</source_model>
-										<sort_order>510</sort_order>
+										<sort_order>31</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -213,7 +235,7 @@
 										<frontend_type>select</frontend_type>
 										<source_model>modulodepago2/system_config_source_processingstatuses
 										</source_model>
-										<sort_order>520</sort_order>
+										<sort_order>32</sort_order>
 										<show_in_default>1</show_in_default>
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
@@ -239,7 +261,7 @@
 									<frontend_type>select</frontend_type>
 									<source_model>adminhtml/system_config_source_order_status
 									</source_model>
-									<sort_order>540</sort_order>
+									<sort_order>33</sort_order>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
@@ -252,28 +274,26 @@
 									<frontend_type>select</frontend_type>
 									<source_model>adminhtml/system_config_source_order_status
 									</source_model>
-									<sort_order>550</sort_order>
+									<sort_order>34</sort_order>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
 								</estado_denegada>
 
-							</fields>
-						</todopago_avanzada>
 												
-						<todopago_servicio translate="label" type="group">
+						<todopago_servicio>
 							<label>CONFIGURACION - SERVICIO</label>
-							<frontend_type>text</frontend_type>
-							<sort_order>600</sort_order>
+							<frontend_type>label</frontend_type>
+							<sort_order>40</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
-							<fields>
+						</todopago_servicio>
 								<settimeoutvalue translate="label">
 									<label>Time Out del Servicio de Pago
 									</label>
 									<frontend_type>text</frontend_type>
-									<sort_order>610</sort_order>
+									<sort_order>41</sort_order>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
@@ -281,7 +301,7 @@
 								<certificado_pem translate="label">
 									<label>ruta donde se encuentra el certificado</label>
 									<frontend_type>text</frontend_type>
-									<sort_order>610</sort_order>
+									<sort_order>42</sort_order>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
@@ -289,6 +309,7 @@
 								<proxyhost translate="label">
 									<label>Proxy URL</label>
 									<comment>Dato adicional en los casos que se utilice algún proxy</comment>
+									<sort_order>43</sort_order>
 									<frontend_type>text</frontend_type>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
@@ -297,6 +318,7 @@
 								
 								<proxyport translate="label">
 									<label>Proxy Port</label>
+									<sort_order>44</sort_order>
 									<frontend_type>text</frontend_type>
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
@@ -307,6 +329,7 @@
 									<label>Proxy User</label>
 									<frontend_type>text</frontend_type>
 									<show_in_default>1</show_in_default>
+									<sort_order>45</sort_order>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
 								</proxyuser>
@@ -317,10 +340,8 @@
 									<show_in_default>1</show_in_default>
 									<show_in_website>1</show_in_website>
 									<show_in_store>1</show_in_store>
+									<sort_order>46</sort_order>
 								</proxypassword>				
-
-							</fields>
-						</todopago_servicio>
 					</fields>
 				</modulodepago2>
 			</groups>

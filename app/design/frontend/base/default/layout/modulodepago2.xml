@@ -8,7 +8,15 @@
       <block type="modulodepago2/cupon" name="modulodepago2_cupon" template="modulodepago2/index.phtml"/>   
     </reference>   
     <reference name="content">   
-      <block type="modulodepago2/formulariocustom" name="root" template="modulodepago2/formulariocustom.phtml"/>   
+      <block type="modulodepago2/formulariocustom" name="root" template="modulodepago2/formulariocustom.phtml"/>
     </reference>  
   </modulodepago2_cupon_index>   
+  <moudlodepago2_formulariocustom_insite>
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>
+    <reference name="content">   
+      <block type="modulodepago2/formulariocustom2" name="formulariocustom2" template="modulodepago2/formulariocustom.phtml"/>
+    </reference>  
+  </moudlodepago2_formulariocustom_insite>
 </layout>  

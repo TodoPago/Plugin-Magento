@@ -19,6 +19,7 @@ Todo Pago - módulo SDK-PHP para conexión con gateway de pago
     + [Devolucion parcial](#devolucionparcial)
     + [Formulario hibrido](#formhidrido)
     + [Obtener Credenciales](#credenciales)
+    + [Máximo de cuotas a mostrar en formulario](#maxcuotas)
  + [Diagrama de secuencia](#secuencia)
  + [Tablas de referencia](#tablareferencia)		
  + [Tabla de errores](#codigoerrores)		 
@@ -519,6 +520,26 @@ $rta->getApikey();
 
 [<sub>Volver a inicio</sub>](#inicio)
 <br>
+
+<a name="maxcuotas"></a>
+####Máximo de cuotas a mostrar en formulario
+Mediante esta funcionalidad, se permite setear el número máximo de cuotas que se desplegará en el formulario de pago.
+
+Para hacer uso de esta funcionalidad debe agregarse en el parámetro **optionsSAR_operacion** del método **sendAuthorizeRequest** el campo **MAXINSTALLMENTS** con el valor máximo de cuotas a ofrecer (generalmente de 1 a 12)
+
+#####Ejemplo
+
+```php		
+$optionsSAR_operacion = array(		
+	...........................................................................		
+	'MAXINSTALLMENTS' => 6, //Nro maximo de cuotas a mostrar en el formulario, OPCIONAL.
+	...........................................................	
+);
+```
+
+[<sub>Volver a inicio</sub>](#inicio)
+<br>
+
 
 <a name="secuencia"></a>
 ##Diagrama de secuencia

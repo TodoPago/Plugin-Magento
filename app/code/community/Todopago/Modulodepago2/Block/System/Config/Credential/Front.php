@@ -10,6 +10,13 @@ class Todopago_Modulodepago2_Block_System_Config_Credential_Front extends Mage_A
     /**
      * Set template to itself
      */
+    protected $_mydata = array();
+
+    public function getButtonLabel()
+    {
+        return $this->_mydata['button_label'];
+    }
+
     protected function _prepareLayout()
     {
         parent::_prepareLayout();
@@ -45,6 +52,11 @@ class Todopago_Modulodepago2_Block_System_Config_Credential_Front extends Mage_A
             $this->_getButtonData($elementHtmlId, $originalData),
             $this->_getSandboxButtonData($elementHtmlId, $originalData)
         ));
+        $this->_mydata = array_merge(
+            $this->_getButtonData($elementHtmlId, $originalData),
+            $this->_getSandboxButtonData($elementHtmlId, $originalData)
+        );
+        
         return $this->_toHtml();
     }
 

@@ -5,7 +5,7 @@ $_code = $this->getMethodCode(); ?>
 <img src="http://www.todopago.com.ar/sites/todopago.com.ar/files/pluginstarjeta.jpg" alt="imagen_todopago" />
 <ul class="form-list" id="payment_form_<?php echo $_code; ?>"
 	style="display: none;">
-	
+	<input type="hidden" id="checkout" name='payment[checkout]' value="<?php echo Mage::app()->getFrontController()->getRequest()->getControllerModule(); ?>">
 	<input type="hidden" id="quote" name='payment[quote]'
 	value="<?php echo $quoteid ?>"></input>
 	<p>Al continuar con la compra, estarás ingresando a un sitio seguro de Todo Pago</p>
@@ -15,6 +15,7 @@ $_code = $this->getMethodCode(); ?>
 #lightbox a{cursor:pointer; color:#fff; position:relative; display:block;}
 </style>
 <?php if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1): ?>
+<?php if(Mage::app()->getFrontController()->getRequest()->getControllerModule() == "Mage_Checkout"): ?>
 <script type="text/javascript">
 originalSave = Review.prototype.save;
 payment.watch("currentMethod",function(a,b,c){
@@ -64,5 +65,6 @@ payment.watch("currentMethod",function(a,b,c){
 	}
 });
 </script>
+<?php endif; ?>
 <?php endif; ?>
 </ul>

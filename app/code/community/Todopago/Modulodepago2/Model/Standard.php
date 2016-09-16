@@ -11,10 +11,20 @@ class Todopago_Modulodepago2_Model_Standard extends Mage_Payment_Model_Method_Ab
 	protected $_canRefundInvoicePartial = true;
 	protected $_canCapture = true;
 
+
+    public function assignData($data) {
+        if (!($data instanceof Varien_Object)) {
+            $data = new Varien_Object($data);
+        }
+        $this->checkout = $data->getCheckout();
+        return $this;
+    }
+
 	public function getOrderPlaceRedirectUrl(){
 		Mage::log("init :".__METHOD__);
 		return Mage::getUrl('modulodepago2/payment/getPayData', array(
-				'_secure' => true
+				'_secure' => true,
+				'checkout' => $this->checkout
 			));
 	}
 

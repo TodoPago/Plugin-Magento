@@ -150,6 +150,7 @@ class FraudControlValidator {
 		$res = array();
 		if(count($arr) > $cant) {
 			for($i = 0; $i < $cant; $i++) {
+
 				$arr[$i] = $this->clean($res[$i]);
 				if($number) {
 					$res[$i] = $this->amount($arr[$i]);

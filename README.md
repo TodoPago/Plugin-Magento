@@ -36,6 +36,7 @@ Plug in para la integración con gateway de pago <strong>Todo Pago</strong>
  - [Configuración plug in](#confplugin)
  - [Formulario Hibrido](#formHibrido)
  - [Obtener datos de configuracion](#getcredentials)
+ - [Configuración de Maximo de Cuotas](#maxcuotas)
  - [Nuevas columnas y atributos](#tca)
 - [Prevencion de Fraude](#cybersource)
  - [Consideraciones generales](#cons_generales)
@@ -71,11 +72,11 @@ Descomentar: <em>extension=php_curl.dll</em>, <em>extension=php_soap.dll</em> y 
 ####Configuración plug in
 Para llegar al menu de configuración ir a: <em>System->Configuration</em> y seleccionar Payment Methods en el menú izquierdo. Entre los medios de pago aparecerá una solapa con el nombre <strong>Todo Pago</strong>. El Plug-in esta separado en configuarción general y 3 sub-menues.
 <sub></br><em>Menú principal</em></br></sub>
-![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/menu_todopago.PNG)
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/magento_1.PNG)
 <sub></br><em>Menú ambiente</em></br></sub>
-![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/configuracion_magento1.PNG) 
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/magento_ambientes.PNG) 
 <sub></br><em>Meenú estados y menú servicios</em></br></sub>
-![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/configuracion_magento2.PNG) 
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/magento_configEstados.PNG) 
 </br>
 [<sub>Volver a inicio</sub>](#inicio)
 
@@ -98,6 +99,13 @@ b. En el popup loguearse con el mail y password de Todopago.</br>
 ![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/getcredentials2.png)
 c. Los datos se cargaran automaticamente en los campos Merchant ID y Security code en el ambiente correspondiente (Desarrollo o produccion ) y solo hay que hacer click en el boton guardar datos y listo.</br>
 ![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/getcredentials3.png)
+[<sub>Volver a inicio</sub>](#inicio)
+
+<br />
+<a name="maxcuotas"></a>
+####Configuración de Maximo de Cuotas
+Se puede configurar la cantidad máxima de cuotas que ofrecerá el formulario de TodoPago con el campo cantidad máxima de cuotas. Para que se tenga en cuenta este valor se debe habilitar el campo Habilitar máximo de cuotas y tomará el valor fijado para máximo de cuotas. En caso que esté habilitado el campo y no haya un valor puesto para las cuotas se tomará el valor 12 por defecto.
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/maxcuotas.PNG)
 [<sub>Volver a inicio</sub>](#inicio)
 
 <br />

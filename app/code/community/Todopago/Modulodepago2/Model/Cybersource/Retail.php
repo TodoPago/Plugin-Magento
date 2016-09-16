@@ -6,7 +6,12 @@ class Todopago_Modulodepago2_Model_Cybersource_Retail extends Todopago_Modulodep
         $shippingAdress = $this->order->getShippingAddress();
         $payDataOperacion ['CSSTCITY'] = $this->getField($shippingAdress->getCity());
         $payDataOperacion ['CSSTCOUNTRY'] = $this->getField($shippingAdress->getCountry());
-        $payDataOperacion ['CSSTEMAIL'] = $this->getField($shippingAdress->getEmail());
+
+        $email = $this->getField($shippingAdress->getEmail());
+        if( empty($email) )
+             $payDataOperacion ['CSSTEMAIL'] = $this->getField($this->order->getCustomerEmail());
+        else $payDataOperacion ['CSSTEMAIL'] = $this->getField($shippingAdress->getEmail());  
+
         $payDataOperacion ['CSSTFIRSTNAME'] = $this->getField($shippingAdress->getFirstname());
         $payDataOperacion ['CSSTLASTNAME'] = $this->getField($shippingAdress->getLastname());
         $payDataOperacion ['CSSTPHONENUMBER'] = $this->getField($shippingAdress->getTelephone());
@@ -19,6 +24,7 @@ class Todopago_Modulodepago2_Model_Cybersource_Retail extends Todopago_Modulodep
                 //$payData ['CSMDD15'] = "";
         $payDataOperacion ['CSMDD16'] = $this->getField($this->order->getCuponCode());
         $payDataOperacion = array_merge($this->getMultipleProductsInfo(), $payDataOperacion);
+
         return $payDataOperacion;
     }
 

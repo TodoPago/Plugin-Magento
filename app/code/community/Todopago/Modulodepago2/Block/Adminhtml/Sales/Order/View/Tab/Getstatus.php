@@ -38,9 +38,11 @@ class Todopago_modulodepago2_Block_Adminhtml_Sales_Order_View_Tab_Getstatus exte
 		$id = $this->getOrderIncrementId($order_id);
 
 		if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
-			$merchant = Mage::getStoreConfig('payment/todopago_modo/idstore_test');
+			$merchant = Mage::getStoreConfig('payment/modulodepago2/idstore_test');
+			if(empty($merchant)) $merchant = Mage::getStoreConfig('payment/todopago_modo/idstore_test');
 		} else{
-			$merchant = Mage::getStoreConfig('payment/todopago_modo/idstore');
+			$merchant = Mage::getStoreConfig('payment/modulodepago2/idstore');
+			if(empty($merchant)) $merchant = Mage::getStoreConfig('payment/todopago_modo/idstore');
 		}
 
 		try{
