@@ -12,8 +12,8 @@ class Todopago_Modulodepago2_Model_Cybersource_Retail extends Todopago_Modulodep
              $payDataOperacion ['CSSTEMAIL'] = $this->getField($this->order->getCustomerEmail());
         else $payDataOperacion ['CSSTEMAIL'] = $this->getField($shippingAdress->getEmail());  
 
-        $payDataOperacion ['CSSTFIRSTNAME'] = $this->getField($shippingAdress->getFirstname());
-        $payDataOperacion ['CSSTLASTNAME'] = $this->getField($shippingAdress->getLastname());
+        $payDataOperacion ['CSSTFIRSTNAME'] = preg_replace('/[0-9]+/', '', $this->getField($shippingAdress->getFirstname()));
+        $payDataOperacion ['CSSTLASTNAME'] = preg_replace('/[0-9]+/', '', $this->getField($shippingAdress->getLastname()));
         $payDataOperacion ['CSSTPHONENUMBER'] = $this->getField($shippingAdress->getTelephone());
         $payDataOperacion ['CSSTPOSTALCODE'] = $this->getField($shippingAdress->getPostcode());
         $payDataOperacion ['CSSTSTATE'] = strtoupper(substr($this->getField($shippingAdress->getRegion()), 0, 1));
