@@ -23,6 +23,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
  - [PR-1](https://github.com/barbazul/Plugin-Magento/pull/1)
 - Fix del valor default faltante en la definicion de Todopago_Modulodepago2_Helper_Connector::getModo - [barbazul](https://github.com/barbazul)
  - [33049f4](https://github.com/barbazul/Plugin-Magento/commit/33049f42cb16677d3cf8af14c0ecb5120ebf168b)
+- Corregido un error de sintaxis en el SDK - [barbazul](https://github.com/barbazul)
+ - [7d51680](https://github.com/barbazul/Plugin-Magento/commit/7d516802c518f21fd75a1a6e7510f89c49902ef5)
 
 
 <a name="inicio"></a>
