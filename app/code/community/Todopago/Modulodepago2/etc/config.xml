@@ -2,7 +2,7 @@
 <config>
   <modules>
     <Todopago_Modulodepago2>
-      <version>1.5.1</version>
+      <version>1.7.0</version>
     </Todopago_Modulodepago2>
   </modules>
   <global>
@@ -139,6 +139,6 @@
           <file>modulodepago2.xml</file>
         </modulodepago2>
       </updates>
-    </layout>
+    </layout>  
   </frontend>
-</config> 
+</config>

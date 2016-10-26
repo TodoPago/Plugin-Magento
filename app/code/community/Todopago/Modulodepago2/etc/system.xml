@@ -4,7 +4,7 @@
 		<payment>
 			<groups>
 				<modulodepago2 translate="label comment" module="paygate">
-					<label>Todo Pago v1.5.1</label>
+					<label>Todo Pago v1.6.0</label>
 					<front-end>text</front-end>
 					<sort_order>1</sort_order>
 					<show_in_default>1</show_in_default>
@@ -220,7 +220,7 @@
 										</label>
 										<comment>Para pagos con tarjetas de crédito mientras espera respuesta del gateway</comment>
 										<frontend_type>select</frontend_type>
-										<source_model>adminhtml/system_config_source_order_status
+										<source_model>modulodepago2/system_config_source_pendingstatuses
 										</source_model>
 										<sort_order>31</sort_order>
 										<show_in_default>1</show_in_default>
@@ -240,19 +240,6 @@
 										<show_in_website>1</show_in_website>
 										<show_in_store>1</show_in_store>
 									</order_aprov>
-								<!--<invoice>
-									<label>Generar factura automáticamente</label>
-									<comment>Cuando se llega al estado final anterior genera la factura
-									</comment>
-									<frontend_type>select</frontend_type>
-									<source_model>adminhtml/system_config_source_yesno
-									</source_model>
-									<sort_order>580</sort_order>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</invoice>-->
-
 
 								<estado_offline>
 									<label>Estado del Pedido para "Cupon Emitido Pendiente de Pago"

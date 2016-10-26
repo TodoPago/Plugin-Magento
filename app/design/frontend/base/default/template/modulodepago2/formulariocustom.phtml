@@ -2,7 +2,7 @@
 	if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
 		?><script src="https://developers.todopago.com.ar/resources/TPHybridForm-v0.1.js"></script><?php
 	} else {
-		?><script src="https://forms.todopago.com.ar/resources/TPHybridForm-v0.1.js"></script><?php		
+		?><script src="https://forms.todopago.com.ar/resources/TPHybridForm-v0.1.js"></script><?php
 	}
 ?>
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'modulodepago2/jquery.js'; ?>"></script>
@@ -90,7 +90,7 @@
 						<div class="input-box">
 							<select id="tipoDocCbx" class="left"></select>
 							<span class="left spacer">&nbsp;</span>
-							<input id="nroDocTxt" class="left input-text required-entry" />	
+							<input id="nroDocTxt" class="left input-text required-entry" />
 						</div>
 						<div class="clear"></div>
 						<span class="error" id="nroDocTxtError"></span>
@@ -104,16 +104,17 @@
 					</div>
 				</div>
 				<div id="tp-bt-wrapper">
+					<button id="MY_btnPagarConBilletera" title="Pagar con Billetera" class="button"><span>Pagar con Billetera</span></button>
 					<button id="MY_btnConfirmarPago" title="Pagar" class="button"><span>Pagar</span></button>
 				</div>
-			</div>	
+			</div>
 		</div>
 
 	</div>
 <?php
 
 	//aca ponco la consula la base de datos a partir de orden id
-	
+
 ?>
 
 	<script>
@@ -125,8 +126,8 @@
 		var numericAmount = "<?php echo $this->amount; ?>";
 		var mail = "<?php echo $this->mail; ?>";
 		var CompleteName = "<?php echo $this->nombre; ?>";
-		
-		
+
+
 		/************* CONFIGURACION DEL API ************************/
 		window.TPFORMAPI.hybridForm.initForm({
 			callbackValidationErrorFunction: 'validationCollector',
@@ -141,7 +142,7 @@
 			botonPagarId: 'MY_btnConfirmarPago',
 			codigoSeguridadTxt: 'Codigo',
 		});
-		
+
 		window.TPFORMAPI.hybridForm.setItem({
 			publicKey: security,
 			merchantId: merchantId,
@@ -156,8 +157,7 @@
 			console.log(parametros.field + " ==> " + parametros.error);
 		}
 		function billeteraPaymentResponse(response) {
-			console.log("My wallet callback");
-			console.log(response.ResultCode + " : " + response.ResultMessage);
+			window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;
 		}
 		function customPaymentSuccessResponse(response) {
 			window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;

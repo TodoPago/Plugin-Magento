@@ -18,7 +18,7 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 	private function completeCS(){
 		$payDataOperacion = array();
 		$billingAdress = $this->order->getBillingAddress();
-		
+
 		$payDataOperacion ['CSBTCITY'] = $this->getField($billingAdress->getCity());
 		$payDataOperacion ['CSBTCOUNTRY'] = substr($this->getField($billingAdress->getCountry()),0,2);
 		$payDataOperacion ['CSBTCUSTOMERID'] = $this->getField($billingAdress->getCustomerId());
@@ -28,11 +28,11 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 			$payDataOperacion ['CSBTCUSTOMERID']= "guest".date("ymdhs");
 		}
 		$payDataOperacion ['CSBTIPADDRESS'] = $this->getField($this->order->getRemoteIp());
-		
+
 		$email = $this->getField($billingAdress->getEmail());
         if( empty($email) )
              $payDataOperacion ['CSBTEMAIL'] = $this->getField($this->order->getCustomerEmail());
-        else $payDataOperacion ['CSBTEMAIL'] = $this->getField($billingAdress->getEmail());  
+        else $payDataOperacion ['CSBTEMAIL'] = $this->getField($billingAdress->getEmail());
 
 		$payDataOperacion ['CSBTFIRSTNAME'] = $this->getField($billingAdress->getFirstname());
 		$payDataOperacion ['CSBTLASTNAME'] = $this->getField($billingAdress->getLastname());
@@ -71,8 +71,8 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 		$subst = "";
 		$string = preg_replace($re, $subst, $string);
 
-		$replace = array("!","'","\'","\"","  ","$","\\","\n","\r",
-			'\n','\r','\t',"\t","\n\r",'\n\r','&nbsp;','&ntilde;',".,",",.","+", "%", "-", ")", "(", "°");
+		$replace = array("#", "[", "]", "{", "}", "<", ">", "¬", "^", ":", ";", "|", "~", "*","&", "_", "¿", "?", "¡","!","'","\'",
+		"\"","  ","$","\\","\n","\r",'\n','\r','\t',"\t","\n\r",'\n\r','&nbsp;','&ntilde;',".,",",.","+", "%", "-", ")", "(", "°");
 		$string = str_replace($replace, '', $string);
 
 		$cods = array('\u00c1','\u00e1','\u00c9','\u00e9','\u00cd','\u00ed','\u00d3','\u00f3','\u00da','\u00fa','\u00dc','\u00fc','\u00d1','\u00f1');
@@ -104,7 +104,7 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 
 		foreach($productos as $item){
 			if ($item->getParentItem()) continue;
-			
+
 			$p = Mage::getModel('catalog/product')->load($item->getProductId());
 /////
 			$cats = $p->getCategoryIds();
@@ -117,19 +117,19 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 					$productcode_array[] = $category->getName();
 				} else {
 					$productcode_array[] = "default";
-				}				
+				}
 			} else {
 				$productcode_array[] = "default";
 			}
 ////
-			
+
 			$_description = $p->getName() . " " . $p->getDescription() . "  " . $p->getShortDescription();
 			$_description = $this->getField($_description);
 			$_description = trim($_description);
 			$_description = substr($_description, 0,15);
 			$description_array [] = str_replace("#","",$_description);
 
-			$product_name = $item->getName();
+			$product_name = $this->getField($item->getName());
 			$name_array [] = $product_name;
 
 			$sku = $item->getSku();
@@ -162,7 +162,7 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 			$return = $this->_sanitize_string($datasources);
 
 		}catch(Exception $e){
-			Mage::log("Modulo de pago - TodoPago ==> operation_id:  $this->order->getIncrementId() - 
+			Mage::log("Modulo de pago - TodoPago ==> operation_id:  $this->order->getIncrementId() -
 				no se pudo agregar el campo: Exception: $e");
 		}
 

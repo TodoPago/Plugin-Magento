@@ -10,13 +10,24 @@ class Todopago_Modulodepago2_Model_Standard extends Mage_Payment_Model_Method_Ab
 	protected $_canRefund = true;
 	protected $_canRefundInvoicePartial = true;
 	protected $_canCapture = true;
+	protected $_isInitializeNeeded = true;
+	
+    public function initialize($paymentAction, $stateObject)
+    {
+		$status = Mage::getStoreConfig('payment/modulodepago2/order_status');
+		if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');        
 
+        $state = Mage_Sales_Model_Order::STATE_NEW;
+        $stateObject->setState($state);
+        $stateObject->setStatus($status);
+        $stateObject->setIsNotified(false);
+    }
 
     public function assignData($data) {
         if (!($data instanceof Varien_Object)) {
             $data = new Varien_Object($data);
         }
-        $this->checkout = $data->getCheckout();
+        $this->tpcheckout = $data->getTpcheckout();
         return $this;
     }
 
@@ -24,7 +35,7 @@ class Todopago_Modulodepago2_Model_Standard extends Mage_Payment_Model_Method_Ab
 		Mage::log("init :".__METHOD__);
 		return Mage::getUrl('modulodepago2/payment/getPayData', array(
 				'_secure' => true,
-				'checkout' => $this->checkout
+				'tpcheckout' => $this->tpcheckout
 			));
 	}
 
