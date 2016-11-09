@@ -25,6 +25,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
  - [33049f4](https://github.com/barbazul/Plugin-Magento/commit/33049f42cb16677d3cf8af14c0ecb5120ebf168b)
 - Corregido un error de sintaxis en el SDK - [barbazul](https://github.com/barbazul)
  - [7d51680](https://github.com/barbazul/Plugin-Magento/commit/7d516802c518f21fd75a1a6e7510f89c49902ef5)
+- Inicializada una variable en el controller Payment que interrumpia el checkout en modo desarrollador - [barbazul](https://github.com/barbazul)
+ - [b095ed7](https://github.com/barbazul/Plugin-Magento/commit/b095ed793b76ac64ab20346bf5afff02d071bfc5)
 
 
 <a name="inicio"></a>
