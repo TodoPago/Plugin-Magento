@@ -268,38 +268,7 @@ public function lastStep($order_key, $answer_key){
         $todopagotable->setGetauthorizeanswerStatus(Mage::getModel('core/date')->date('Y-m-d H:i:s')." - ".$second_step["StatusCode"]." - ".$second_step['StatusMessage']);
         $todopagotable->save();
 
-            //para saber si es un cupon
-        if(strlen($second_step['Payload']['Answer']["BARCODE"]) > 0){
-            $status = Mage::getStoreConfig('payment/modulodepago2/estado_offline');
-            if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/estado_offline');
-            $state = $this->_get_new_order_state($status);
-
-            if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
-                $message = "Todo Pago (TEST): " . $second_step['StatusMessage'];
-            } else{
-                $message = "Todo Pago: " . $second_step['StatusMessage'];
-            }
-            $order->setState($state, $status, $message);
-
-            try{
-                $order->sendNewOrderEmail();
-            }catch(Exception $e){
-                Mage::log("catch : ".__METHOD__);
-                Mage::log("message: ".var_export($e, true));
-                $order->sendOrderUpdateEmail(true, $message);
-            }
-
-            $order->save();
-            Mage_Core_Controller_Varien_Action::_redirect('modulodepago2/cupon/index', array('_secure' => true,
-               'nroop' => $order_key,
-               'venc' => $second_step['Payload']['Answer']["COUPONEXPDATE"],
-               'total' => $second_step['Payload']['Request']['AMOUNT'],
-               'code' => $second_step['Payload']['Answer']["BARCODE"],
-               'tipocode' => $second_step['Payload']['Answer']["BARCODETYPE"],
-               'empresa' => $second_step['Payload']['Answer']["PAYMENTMETHODNAME"],
-               ));
-        }//caso de transaccion aprovada
-        elseif($second_step['StatusCode'] == -1){
+        if($second_step['StatusCode'] == -1){
             $status = Mage::getStoreConfig('payment/modulodepago2/order_aprov');
             if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_aprov');
             $state = $this->_get_new_order_state($status);
