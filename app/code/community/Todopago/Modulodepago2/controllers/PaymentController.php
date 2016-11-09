@@ -40,9 +40,10 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
         $order = Mage::getSingleton('sales/order')
         ->loadByIncrementId($id);
 
-$status = Mage::getStoreConfig('payment/modulodepago2/order_status');
-if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');        
-$order->setState("new", $status, $message);
+        $message = "Actualizaco automáticamente por Todo Pago";
+        $status = Mage::getStoreConfig('payment/modulodepago2/order_status');
+        if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');
+        $order->setState("new", $status, $message);
         
         $productos = $order->getItemsCollection();
 
