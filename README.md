@@ -27,6 +27,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
  - [7d51680](https://github.com/barbazul/Plugin-Magento/commit/7d516802c518f21fd75a1a6e7510f89c49902ef5)
 - Inicializada una variable en el controller Payment que interrumpia el checkout en modo desarrollador - [barbazul](https://github.com/barbazul)
  - [b095ed7](https://github.com/barbazul/Plugin-Magento/commit/b095ed793b76ac64ab20346bf5afff02d071bfc5)
+- Fix para que el formulario hibrido funcione por ajax - [barbazul](https://github.com/barbazul)
+ - [29b1980](https://github.com/barbazul/Plugin-Magento/commit/29b19805877331ecad8a916cfd0292d0e96c303f)
 
 
 <a name="inicio"></a>
