@@ -151,7 +151,7 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
                 $order->save();
                 Mage::log("Modulo de pago - TodoPago ==> redirige a: ".$first_step['URL_Request']);
 				if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
-                    if($this->getRequest()->get('checkout') == "Mage_Checkout") {
+                    if ($this->getRequest()->get('tpcheckout') == "Mage_Checkout") {
 
                         $url = Mage::getUrl('modulodepago2/formulariocustom/index', array(
                             '_secure' => true,
