@@ -29,6 +29,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
  - [b095ed7](https://github.com/barbazul/Plugin-Magento/commit/b095ed793b76ac64ab20346bf5afff02d071bfc5)
 - Fix para que el formulario hibrido funcione por ajax - [barbazul](https://github.com/barbazul)
  - [29b1980](https://github.com/barbazul/Plugin-Magento/commit/29b19805877331ecad8a916cfd0292d0e96c303f)
+- Removido completamente el soporte para pago por cupones por no estar terminado de implementar e incorporar una librería cuya licencia no se está respetando - [barbazul](https://github.com/barbazul)
+ - [9fdae21](https://github.com/barbazul/Plugin-Magento/commit/9fdae21bede0a2db7d8a2a28a1d56443c9f51017)
 
 
 <a name="inicio"></a>
