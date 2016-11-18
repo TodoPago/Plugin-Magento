@@ -31,6 +31,8 @@ A continuación un listado de todas las modificaciones que fueron incorporadas p
  - [29b1980](https://github.com/barbazul/Plugin-Magento/commit/29b19805877331ecad8a916cfd0292d0e96c303f)
 - Removido completamente el soporte para pago por cupones por no estar terminado de implementar e incorporar una librería cuya licencia no se está respetando - [barbazul](https://github.com/barbazul)
  - [9fdae21](https://github.com/barbazul/Plugin-Magento/commit/9fdae21bede0a2db7d8a2a28a1d56443c9f51017)
+- Sanitizados los campos de nombre y apellido para que CyberSource no rebote pagos - [gdemarsico](https://github.com/gdemarsico)
+ - [ada2b77](https://github.com/barbazul/Plugin-Magento/commit/ada2b77e6d258b1d0aa7aa0897fa0cec53e3ad52)
 
 
 <a name="inicio"></a>
