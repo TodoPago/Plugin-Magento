@@ -151,15 +151,15 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
                 $order->save();
                 Mage::log("Modulo de pago - TodoPago ==> redirige a: ".$first_step['URL_Request']);
 				if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
-                    if ($this->getRequest()->get('tpcheckout') == "Mage_Checkout") {
+                    if($this->getRequest()->get('tpcheckout') == "Mage_Checkout") {
 
                         $url = Mage::getUrl('modulodepago2/formulariocustom/index', array(
                             '_secure' => true,
                             'order' =>  $order->getIncrementId(),
                             'requestKey' => $first_step['PublicRequestKey'],
                         ));
-    					echo '{"url":"'.$url.'"}';
-    					return;
+    					// echo '{"url":"'.$url.'"}';
+                        return $this->replyJson(array('url' => $url));
                     } else {
                         $url = Mage::getUrl('modulodepago2/formulariocustom/insite', array(
                             '_secure' => true,
@@ -190,7 +190,18 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
                 $order->setState($state, $status, $message);
                 $order->save();
                 Mage::log("Modulo de pago - TodoPago ==> redirige a: checkout/onepage/failure");
-                Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+                //Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+                if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
+                    $this->getResponse()->clearHeaders()->setHeader('HTTP/1.0', 400, true);
+                    $url = Mage::getUrl('checkout/onepage/failure', array('_secure' => true));
+                    return $this->replyJson(array('url' => $url));
+                } else {
+                    $url = Mage::getUrl('checkout/onepage/failure', array(
+                        '_secure' => true
+                    ));
+                    $this->_redirectUrl($url);
+                    return;
+                }
             }
 
         } catch(Exception $e){
@@ -213,8 +224,24 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
             $order->setState($state, $status, $message);
             $order->save();
             Mage::log("Modulo de pago - TodoPago ==> redirige a: checkout/onepage/failure");
-            Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+            //Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+            if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
+                $this->getResponse()->clearHeaders()->setHeader('HTTP/1.0', 400, true);
+                $url = Mage::getUrl('checkout/onepage/failure', array('_secure' => true));
+                return $this->replyJson(array('url' => $url));
+            } else {
+                $url = Mage::getUrl('checkout/onepage/failure', array(
+                    '_secure' => true
+                ));
+                $this->_redirectUrl($url);
+                return;
+            }
     }
+}
+
+private function replyJson($values)
+{
+    return $this->getResponse()->setHeader('Content-Type', 'application/json')->appendBody(json_encode($values));
 }
 
 public function secondStepAction(){
@@ -287,6 +314,16 @@ public function lastStep($order_key, $answer_key){
                 $order->sendOrderUpdateEmail(true, $message);
             }
 
+            /*costo financiero*/
+            $amountBuyer = isset($second_step['Payload']['Request']['AMOUNTBUYER'])?$second_step['Payload']['Request']['AMOUNTBUYER']:number_format($order->getGrandTotal(), 2, ".", "");
+            $cf = $amountBuyer - $order->getGrandTotal();
+
+            $order->setTodopagoCostofinanciero($cf);
+            $order->setGrandTotal($amountBuyer);
+            $order->setBaseGrandTotal($amountBuyer);
+
+            $order->save();
+
 			$payment = $order->getPayment();
 			$payment->setTransactionId($second_step['AuthorizationKey']);
 			$payment->setParentTransactionId($payment->getTransactionId());
@@ -298,8 +335,12 @@ public function lastStep($order_key, $answer_key){
 			$invoice = $order->prepareInvoice()
                    ->setTransactionId(1)
                    ->addComment("Invoice created.")
-				   ->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE)
-                   ->register()
+				   ->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::CAPTURE_ONLINE);
+
+            $invoice->setGrandTotal($amountBuyer);
+            $invoice->setBaseGrandTotal($amountBuyer);
+
+            $invoice = $invoice->register()
                    ->pay();
 
 			Mage::getModel('core/resource_transaction')

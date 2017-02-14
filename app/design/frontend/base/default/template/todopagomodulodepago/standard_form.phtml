@@ -94,13 +94,15 @@ payment.watch("currentMethod",function(a,b,c){
 									$('overlay').setStyle({'height':height+'px'});
 									new Effect.Opacity('overlay',{from:0.0,to:1.0,duration:0.3,transition:Effect.Transitions.sinoidal,afterFinish:function(){
 											$('overlay').insert("<div id='lightbox'></div>");
-											$('lightbox').insert('<iframe width="100%" height="100%" src="'+a.responseText.evalJSON().url+'"></iframe>');
+											$('lightbox').insert('<iframe width="100%" height="100%" '+ ((a.responseJSON != null) ? ('src="' + a.responseJSON.url) : ('srcdoc="' + a.responseText))+'"></iframe>');
 									}});
 								}
 							}
 						);
 					},
-					onFailure: checkout.ajaxFailure.bind(checkout)
+					onFailure: function(data) {
+							window.location = data.responseText.evalJSON().url;
+					}
 				}
 			);
 		});

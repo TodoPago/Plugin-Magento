@@ -2,7 +2,7 @@
 <config>
   <modules>
     <Todopago_Modulodepago2>
-      <version>1.7.0</version>
+      <version>1.8.0</version>
     </Todopago_Modulodepago2>
   </modules>
   <global>
@@ -29,6 +29,41 @@
       <modulodepago2>
         <class>Todopago_Modulodepago2_Block</class>
       </modulodepago2>
+      <adminhtml>
+        <rewrite>
+          <sales_order_creditmemo_totals>Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
+        </rewrite>
+      </adminhtml>
+      <adminhtml>
+        <rewrite>
+          <sales_order_invoice_totals>Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+        </rewrite>
+      </adminhtml>
+      <adminhtml>
+        <rewrite>
+          <sales_order_totals>Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
+        </rewrite>
+      </adminhtml>
+      <adminhtml>
+        <rewrite>
+          <sales_order_payment>Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Payment</sales_order_payment>
+        </rewrite>
+      </adminhtml>
+      <sales>
+        <rewrite>
+          <order_totals>Todopago_Modulodepago2_Block_Sales_Order_Totals</order_totals>
+        </rewrite>
+      </sales>
+      <sales>
+        <rewrite>
+          <order_invoice_totals>Todopago_Modulodepago2_Block_Sales_Order_Invoice_Totals</order_invoice_totals>
+        </rewrite>
+      </sales>
+      <sales>
+        <rewrite>
+          <order_creditmemo_totals>Todopago_Modulodepago2_Block_Sales_Order_Creditmemo_Totals</order_creditmemo_totals>
+        </rewrite>
+      </sales>      
     </blocks>
     <resources>
       <categoryattribute1425228037_setup>
@@ -89,6 +124,57 @@
         </connection>
       </salesattribute1416425150_read>
     </resources>
+  <events>
+    <checkout_type_onepage_save_order_after> <!-- identifier of the event we want to catch -->
+        <observers>
+          <checkout_type_onepage_save_order_after_prepaiddiscount_handler> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>modulodepago2/order</class> <!-- observers class alias -->
+            <method>saveTodopagoCostoFinanciero</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </checkout_type_onepage_save_order_after_prepaiddiscount_handler>
+        </observers>
+      </checkout_type_onepage_save_order_after>       
+    <checkout_type_multishipping_create_orders_single> <!-- identifier of the event we want to catch -->
+        <observers>       
+          <checkout_type_multishipping_create_orders_single_prepaiddiscount_handler> <!-- identifier of the event handler -->
+            <type>model</type> <!-- class method call type; valid are model, object and singleton -->
+            <class>modulodepago2/order</class> <!-- observers class alias -->
+            <method>saveTodopagoCostoFinancieroMulti</method>  <!-- observer's method to be called -->
+            <args></args> <!-- additional arguments passed to observer -->
+          </checkout_type_multishipping_create_orders_single_prepaiddiscount_handler>       
+        </observers>
+      </checkout_type_multishipping_create_orders_single>
+    </events>   
+     <sales>
+        <quote>
+            <totals>               
+                <todopago_costofinanciero>
+                    <class>modulodepago2/quote_address_total_todopago</class>
+                    <after>subtotal,freeshipping,tax_subtotal,shipping</after>
+                    <before>grand_total</before>
+                </todopago_costofinanciero>
+            </totals>
+        </quote>
+            <order_invoice>
+                <totals>               
+                <todopago_costofinanciero>
+                    <class>modulodepago2/order_invoice_total_todopago</class>
+                    <after>subtotal,freeshipping,tax_subtotal,shipping</after>
+                    <before>grand_total</before>
+                </todopago_costofinanciero>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>               
+                <todopago_costofinanciero>
+                    <class>modulodepago2/order_creditmemo_total_todopago</class>
+                    <after>subtotal,freeshipping,tax_subtotal,shipping</after>
+                    <before>grand_total</before>
+                </todopago_costofinanciero>
+                </totals>
+            </order_creditmemo>
+    </sales>    
   </global>
 <admin>
 	<routers>
