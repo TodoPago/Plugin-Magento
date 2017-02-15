@@ -14,26 +14,16 @@ Antes de considerar el uso de este fork por sobre el desarrollo oficial se recom
 
 A continuación un listado de todas las modificaciones que fueron incorporadas para su consideración. Esta lista podría no estar completamente sincronizada con todas las contribuciones que fueran aceptadas aunque prometo hacer mi mayor esfuerzo para intentar mantenerla lo más al día posible.
 
-- Incorporación de composer.json y modman para manejo de dependencias - [barbazul](https://github.com/barbazul)
- - [6a6a972](https://github.com/barbazul/Plugin-Magento/commit/6a6a972dc9720dc5e932376fecada215cd6ca9b1)
-- Agregado el nombre del producto en la descripción que se envía al gateway - [dsueiro](https://github.com/dsueiro)
- - [9dd6b5f](https://github.com/barbazul/Plugin-Magento/commit/9dd6b5fa91cca74aea01aed78ad4d57defd963e6)
-- Eliminado un rewrite sobre el bloque de agreements que rompía el funcionamiento de los agreements de magento - [augustojbusso](https://github.com/augustojbusso)
- - [53f1992](https://github.com/barbazul/Plugin-Magento/commit/53f1992bcc579da7b4c9c69081648a36440aa247)
- - [PR-1](https://github.com/barbazul/Plugin-Magento/pull/1)
-- Fix del valor default faltante en la definicion de Todopago_Modulodepago2_Helper_Connector::getModo - [barbazul](https://github.com/barbazul)
- - [33049f4](https://github.com/barbazul/Plugin-Magento/commit/33049f42cb16677d3cf8af14c0ecb5120ebf168b)
-- Corregido un error de sintaxis en el SDK - [barbazul](https://github.com/barbazul)
- - [7d51680](https://github.com/barbazul/Plugin-Magento/commit/7d516802c518f21fd75a1a6e7510f89c49902ef5)
-- Inicializada una variable en el controller Payment que interrumpia el checkout en modo desarrollador - [barbazul](https://github.com/barbazul)
- - [b095ed7](https://github.com/barbazul/Plugin-Magento/commit/b095ed793b76ac64ab20346bf5afff02d071bfc5)
-- Fix para que el formulario hibrido funcione por ajax - [barbazul](https://github.com/barbazul)
- - [29b1980](https://github.com/barbazul/Plugin-Magento/commit/29b19805877331ecad8a916cfd0292d0e96c303f)
-- Removido completamente el soporte para pago por cupones por no estar terminado de implementar e incorporar una librería cuya licencia no se está respetando - [barbazul](https://github.com/barbazul)
- - [9fdae21](https://github.com/barbazul/Plugin-Magento/commit/9fdae21bede0a2db7d8a2a28a1d56443c9f51017)
-- Sanitizados los campos de nombre y apellido para que CyberSource no rebote pagos - [gdemarsico](https://github.com/gdemarsico)
- - [ada2b77](https://github.com/barbazul/Plugin-Magento/commit/ada2b77e6d258b1d0aa7aa0897fa0cec53e3ad52)
-
+- Incorporación de composer.json y modman para manejo de dependencias - [barbazul](https://github.com/barbazul) - [6a6a972](https://github.com/barbazul/Plugin-Magento/commit/6a6a972dc9720dc5e932376fecada215cd6ca9b1)
+- Agregado el nombre del producto en la descripción que se envía al gateway - [dsueiro](https://github.com/dsueiro) - [9dd6b5f](https://github.com/barbazul/Plugin-Magento/commit/9dd6b5fa91cca74aea01aed78ad4d57defd963e6)
+- Eliminado un rewrite sobre el bloque de agreements que rompía el funcionamiento de los agreements de magento - [augustojbusso](https://github.com/augustojbusso) - [53f1992](https://github.com/barbazul/Plugin-Magento/commit/53f1992bcc579da7b4c9c69081648a36440aa247) - [PR-1](https://github.com/barbazul/Plugin-Magento/pull/1)
+- Fix del valor default faltante en la definicion de Todopago_Modulodepago2_Helper_Connector::getModo - [barbazul](https://github.com/barbazul) - [33049f4](https://github.com/barbazul/Plugin-Magento/commit/33049f42cb16677d3cf8af14c0ecb5120ebf168b)
+- Corregido un error de sintaxis en el SDK - [barbazul](https://github.com/barbazul) - [7d51680](https://github.com/barbazul/Plugin-Magento/commit/7d516802c518f21fd75a1a6e7510f89c49902ef5)
+- Inicializada una variable en el controller Payment que interrumpia el checkout en modo desarrollador - [barbazul](https://github.com/barbazul) - [b095ed7](https://github.com/barbazul/Plugin-Magento/commit/b095ed793b76ac64ab20346bf5afff02d071bfc5)
+- Fix para que el formulario hibrido funcione por ajax - [barbazul](https://github.com/barbazul) - [29b1980](https://github.com/barbazul/Plugin-Magento/commit/29b19805877331ecad8a916cfd0292d0e96c303f)
+- Removido completamente el soporte para pago por cupones por no estar terminado de implementar e incorporar una librería cuya licencia no se está respetando - [barbazul](https://github.com/barbazul) - [9fdae21](https://github.com/barbazul/Plugin-Magento/commit/9fdae21bede0a2db7d8a2a28a1d56443c9f51017)
+- Sanitizados los campos de nombre y apellido para que CyberSource no rebote pagos - [gdemarsico](https://github.com/gdemarsico) - [ada2b77](https://github.com/barbazul/Plugin-Magento/commit/ada2b77e6d258b1d0aa7aa0897fa0cec53e3ad52)
+- Invertido el orden en el que se envia el correo de confirmacion de pedido con la asignacion del costo financiero para empatar los montos del mail con los de la vista de pedido [MicaelaMelek](https://github.com/MicaelaMelek) - [78f0fc4](https://github.com/barbazul/Plugin-Magento/commit/78f0fc4e38fd8478498f5febd62d92db7da48eef) 
 
 <a name="inicio"></a>
 Magento- módulo Todo Pago (v1.7.x a 1.9.x)
