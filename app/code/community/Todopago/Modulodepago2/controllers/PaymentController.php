@@ -306,14 +306,6 @@ public function lastStep($order_key, $answer_key){
             }
             $order->setState($state, $status, $message);
 
-            try{
-                $order->sendNewOrderEmail();
-            }catch(Exception $e){
-                Mage::log("catch : ".__METHOD__);
-                Mage::log("message: ".var_export($e, true));
-                $order->sendOrderUpdateEmail(true, $message);
-            }
-
             /*costo financiero*/
             $amountBuyer = isset($second_step['Payload']['Request']['AMOUNTBUYER'])?$second_step['Payload']['Request']['AMOUNTBUYER']:number_format($order->getGrandTotal(), 2, ".", "");
             $cf = $amountBuyer - $order->getGrandTotal();
@@ -324,7 +316,15 @@ public function lastStep($order_key, $answer_key){
 
             $order->save();
 
-			$payment = $order->getPayment();
+            try{
+                $order->sendNewOrderEmail();
+            }catch(Exception $e){
+                Mage::log("catch : ".__METHOD__);
+                Mage::log("message: ".var_export($e, true));
+                $order->sendOrderUpdateEmail(true, $message);
+            }
+
+            $payment = $order->getPayment();
 			$payment->setTransactionId($second_step['AuthorizationKey']);
 			$payment->setParentTransactionId($payment->getTransactionId());
 
