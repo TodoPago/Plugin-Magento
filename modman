@@ -1,0 +1,12 @@
+app/code/community/Todopago/Modulodepago2 app/code/community/Todopago/Modulodepago2
+app/design/adminhtml/default/default/layout/modulodepago2.xml app/design/adminhtml/default/default/layout/modulodepago2.xml
+app/design/adminhtml/default/default/template/modulodepago2 app/design/adminhtml/default/default/template/modulodepago2
+app/design/frontend/base/default/layout/modulodepago2.xml app/design/frontend/base/default/layout/modulodepago2.xml
+app/design/frontend/base/default/template/modulodepago2 app/design/frontend/base/default/template/modulodepago2
+app/design/frontend/base/default/template/todopagomodulodepago app/design/frontend/base/default/template/todopagomodulodepago
+app/etc/modules/Todopago_Modulodepago2.xml app/etc/modules/Todopago_Modulodepago2.xml
+js/modulodepago2 js/modulodepago2
+lib/Codebar lib/Codebar
+lib/metododepago2 lib/metododepago2
+skin/adminhtml/default/default/modulodepago2 skin/adminhtml/default/default/modulodepago2
+skin/frontend/base/default/css/modulodepago2 skin/frontend/base/default/css/modulodepago2
