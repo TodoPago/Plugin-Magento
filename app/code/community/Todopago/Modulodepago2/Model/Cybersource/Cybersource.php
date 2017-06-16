@@ -34,8 +34,8 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
              $payDataOperacion ['CSBTEMAIL'] = $this->getField($this->order->getCustomerEmail());
         else $payDataOperacion ['CSBTEMAIL'] = $this->getField($billingAdress->getEmail());
 
-		$payDataOperacion ['CSBTFIRSTNAME'] = $this->getField($billingAdress->getFirstname());
-		$payDataOperacion ['CSBTLASTNAME'] = $this->getField($billingAdress->getLastname());
+		$payDataOperacion ['CSBTFIRSTNAME'] = preg_replace('/[0-9]+/', '', $this->getField($billingAdress->getFirstname()));
+		$payDataOperacion ['CSBTLASTNAME'] = preg_replace('/[0-9]+/', '', $this->getField($billingAdress->getLastname()));
 		$payDataOperacion ['CSBTPOSTALCODE'] = $this->getField($billingAdress->getPostcode());
 		$payDataOperacion ['CSBTPHONENUMBER'] = $this->getField($billingAdress->getTelephone());
 		$payDataOperacion ['CSBTSTATE'] =  strtoupper(substr($this->getField($billingAdress->getRegion()),0,1));
@@ -123,7 +123,7 @@ abstract class Todopago_Modulodepago2_Model_Cybersource_Cybersource extends Mage
 			}
 ////
 
-			$_description = $p->getDescription() . "  " . $p->getShortDescription();
+			$_description = $p->getName() . " " . $p->getDescription() . "  " . $p->getShortDescription();
 			$_description = $this->getField($_description);
 			$_description = trim($_description);
 			$_description = substr($_description, 0,15);

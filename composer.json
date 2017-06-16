@@ -1,0 +1,10 @@
+{
+    "name": "todopago/todopago_modulodepago2",
+    "type": "magento-module",
+    "description": "Plug in para la integración con gateway de pago Todo Pago",
+    "homepage": "https://github.com/barbazul/Plugin-Magento",
+    "require": {
+        "php": ">=5.3",
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
