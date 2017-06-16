@@ -2,7 +2,7 @@
 <config>
   <modules>
     <Todopago_Modulodepago2>
-      <version>1.8.0</version>
+      <version>1.8.2</version>
     </Todopago_Modulodepago2>
   </modules>
   <global>

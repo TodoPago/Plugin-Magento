@@ -44,7 +44,7 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
         $status = Mage::getStoreConfig('payment/modulodepago2/order_status');
         if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');
         $order->setState("new", $status, $message);
-        
+
         $productos = $order->getItemsCollection();
 
         $customer_id = $order->getCustomerId();
@@ -105,6 +105,7 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
 
         $order = new Mage_Sales_Model_Order ();
         $order->loadByIncrementId($payDataOperacion ['OPERATIONID']);
+        $message = "";
 
         try{
 
@@ -283,6 +284,7 @@ public function lastStep($order_key, $answer_key){
         );
 
     Mage::log("Modulo de pago - TodoPago ==> secondStep (".$order_key.") - AnswerKey: ".json_encode($optionsAnswer));
+    $message = "";
 
     try{
         Mage::log("try ".__METHOD__);
@@ -348,6 +350,14 @@ public function lastStep($order_key, $answer_key){
 				->addObject($invoice->getOrder())
 				->save();
 
+            try{
+                $order->sendNewOrderEmail();
+            }catch(Exception $e){
+                Mage::log("catch : ".__METHOD__);
+                Mage::log("message: ".var_export($e, true));
+                $order->sendOrderUpdateEmail(true, $message);
+            }
+
             Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/success', array('_secure' => true));
         }
         //caso de transaccion no aprobada
@@ -403,6 +413,7 @@ public function lastStep($order_key, $answer_key){
         if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/estado_denegada');
         $state = $this->_get_new_order_state($status);
 
+        $message = "";
         if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
             $message = "Todo Pago (TEST): error en el pago del formulario";
         } else{
