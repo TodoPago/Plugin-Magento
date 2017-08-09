@@ -162,10 +162,13 @@ array(
           'MERCHANT'               => '12345678',		
           'OPERATIONID'            => 'ABCDEF-1234-12221-FDE1-00000012',		
           'AMOUNT'                 => '1.00',		
-          'CURRENCYCODE'           => '032', 		
+          'CURRENCYCODE'           => '032', 
+          'AMOUNTBUYER'            => '1.10', // Monto final pagado por el usuario
           );		
 ```		
 Este método devuelve el resumen de los datos de la transacción.		
+
+<ins><strong>Aclaración:</strong></ins> El campo AMOUNTBUYER es el monto efectivamente pagado por el comprador, que incluye el costo financiero total.
 
 Si se pasa mal el <strong>AnswerKey</strong> o el <strong>RequestKey</strong> se verá el siguiente rechazo:
 
@@ -208,7 +211,7 @@ $optionsSAR_operacion = array(
 	'CSBTCOUNTRY'=>'AR', //País de facturación. MANDATORIO. Código ISO. (http://apps.cybersource.com/library/documentation/sbc/quickref/countries_alpha_list.pdf)		
 	'CSBTCUSTOMERID'=>'453458', //Identificador del usuario al que se le emite la factura. MANDATORIO. No puede contener un correo electrónico.		
 	'CSBTIPADDRESS'=>'192.0.0.4', //IP de la PC del comprador. MANDATORIO.		
-	'CSBTEMAIL'=>'decidir@hotmail.com', //Mail del usuario al que se le emite la factura. MANDATORIO.		
+	'CSBTEMAIL'=>'midirecciondemail@hotmail.com', //Mail del usuario al que se le emite la factura. MANDATORIO.		
 	'CSBTFIRSTNAME'=>'Juan' ,//Nombre del usuario al que se le emite la factura. MANDATORIO.		
 	'CSBTLASTNAME'=>'Perez', //Apellido del usuario al que se le emite la factura. MANDATORIO.		
 	'CSBTPHONENUMBER'=>'541160913988', //Teléfono del usuario al que se le emite la factura. No utilizar guiones, puntos o espacios. Incluir código de país. MANDATORIO.		
@@ -254,17 +257,17 @@ $optionsSAR_operacion = array(
 
 <table style="max-width:200px;">
 <tr><th>Nombre del campo</th><th>Required/Optional</th><th>Data Type</th><th>Mínimo</th><th>Comentarios</th></tr>
-<tr><td style="max-width:200px;">CSBTCITY</td><td>Required</td><td>String (50)</td><td>1</td><td>Ciudad / Debe comenzar con una letra</td></tr>
+<tr><td style="max-width:200px;">CSBTCITY</td><td>Required</td><td>String (60)</td><td>6</td><td>Ciudad / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr>
 <tr><td>CSBTCOUNTRY</td><td>Required</td><td>String (2)</td><td>1</td><td>Código ISO</td></tr>
 <tr><td> CSBTCUSTOMERID</td><td>Required</td><td>String (50)</td><td>1</td><td>Identificador del usuario unico logueado al portal (No puede ser una direccion de email)</td></tr>
-<tr><td> CSBTEMAIL</td><td>Required</td><td>String (100)</td><td>1</td><td>Correo electrónico del comprador con formato válido (solo letras (a-z), números, puntos y sin espacios)</td></tr>
-<tr><td>CSBTFIRSTNAME</td><td>Required</td><td>String (60)</td><td>1</td><td>Nombre del tarjeta habiente / Sin caracteres especiales como acentos invertidos, sólo letras, números y espacios</td></tr>
+<tr><td> CSBTEMAIL</td><td>Required</td><td>String (100)</td><td>1</td><td>Correo electrónico del comprador con formato válido (solo letras (a-z,A-Z), números, puntos, guiones y sin espacios).</td></tr>
+<tr><td>CSBTFIRSTNAME</td><td>Required</td><td>String (60)</td><td>6</td><td>Nombre del tarjeta habiente / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr>
 <tr><td>CSBTIPADDRESS</td><td>Required</td><td>String (15)</td><td>1</td><td>"End Customer´s IP address, such as 10.1.27.63, reported by your Web server via socket information."</td></tr>
-<tr><td> CSBTLASTNAME</td><td>Required</td><td>String (60)</td><td>1</td><td>Apellido del tarjetahabiente / Sin caracteres especiales como acentos invertidos, sólo letras, números y espacios</td></tr> 
-<tr><td>CSBTPHONENUMBER</td><td>Required</td><td>String (15)</td><td>6</td><td>Número de telefono</td></tr>
+<tr><td> CSBTLASTNAME</td><td>Required</td><td>String (60)</td><td>6</td><td>Apellido del tarjeta habiente / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr> 
+<tr><td>CSBTPHONENUMBER</td><td>Required</td><td>String (30)</td><td>6</td><td>Número de telefono, acepta números, espacios y/o paréntesis. *Ejemplo *(011) 4567 8910</td></tr>
 <tr><td>CSBTPOSTALCODE</td><td>Required</td><td>String (10)</td><td>1</td><td>Codigo Postal</td></tr> 
 <tr><td>CSBTSTATE</td><td>Required</td><td>String (2)</td><td>1</td><td>Estado (Si el country = US, el campo se valida para un estado valido en USA)</td></tr>
-<tr><td>CSBTSTREET1</td><td>Required</td><td>String (60)</td><td>1</td><td>Calle Numero interior Numero Exterior</td></tr> 
+<tr><td>CSBTSTREET1</td><td>Required</td><td>String (60)</td><td>6</td><td>Calle Numero interior Numero Exterior / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr> 
 <tr><td>CSBTSTREET2</td><td>Optional</td><td>String (60)</td><td></td><td>Barrio</td></tr>
 <tr><td>CSITPRODUCTCODE</td><td>Conditional</td><td>String (255)</td><td></td><td></td> </tr>
 <tr><td>CSITPRODUCTDESCRIPTION</td><td>Conditional</td><td>String (255)</td><td></td><td>Descripción general del producto</td></tr> 
@@ -275,50 +278,28 @@ $optionsSAR_operacion = array(
 <tr><td>CSITUNITPRICE</td><td>Conditional</td><td>String (15)</td><td></td><td>"Precio Unitaro del producto / ""999999.CC"" Es mandatorio informar los decimales, usando el punto como separador de decimales. No se permiten comas, ni como separador de miles ni como separador de decimales."</td></tr> 
 <tr><td>CSPTCURRENCY</td><td>Required</td><td>String (5)</td><td>1</td><td>Currencies=>'032'(Peso Argentino)</td></tr> 
 <tr><td>CSPTGRANDTOTALAMOUNT</td><td>Required</td><td>Decimal (15)</td><td>1</td><td>"Cantidad total de la transaccion./""999999.CC"" Con decimales obligatorios, usando el puntos como separador de decimales. No se permiten comas, ni como separador de miles ni como separador de decimales."</td></tr> 
-<tr><td>CSSTCITY</td><td>Required</td><td>String (50)</td><td>1</td><td>Ciudad / Debe comenzar con una letra</td>
+<tr><td>CSSTCITY</td><td>Required</td><td>String (60)</td><td>6</td><td>Ciudad / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td>
 <tr><td> CSSTCOUNTRY</td><td>Required</td><td>String (2)</td><td>1</td><td>Código ISO</td></tr>
-<tr><td>CSSTEMAIL</td><td>Required</td><td>String (100)</td><td>1</td><td>Correo electrónico del comprador con formato válido (solo letras (a-z), números, puntos y sin espacios)</td></tr> 
-<tr><td>CSSTFIRSTNAME</td><td>Required</td><td>String (60)</td><td>1</td><td>Nombre del tarjeta habiente / Sin caracteres especiales como acentos invertidos, sólo letras, números y espacios</td></tr> 
-<tr><td>CSSTLASTNAME</td><td>Required</td><td>String (60)</td><td>1</td><td>Apellido del tarjetahabiente / Sin caracteres especiales como acentos invertidos, sólo letras, números y espacios</td></tr> 
-<tr><td>CSSTPHONENUMBER</td><td>Required</td><td>String (15)</td><td>6</td><td>"Número de telefono. Cuidar el hecho que por default algunos comercios envían ""54"", contando entonces con 2 de los 6 caracteres requeridos."</td></tr> 
+<tr><td>CSSTEMAIL</td><td>Required</td><td>String (100)</td><td>1</td><td>Correo electrónico del comprador con formato válido (solo letras (a-z,A-Z), números, puntos, guiones y sin espacios).</td></tr> 
+<tr><td>CSSTFIRSTNAME</td><td>Required</td><td>String (60)</td><td>6</td><td>Nombre del tarjeta habiente / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr> 
+<tr><td>CSSTLASTNAME</td><td>Required</td><td>String (60)</td><td>6</td><td>Apellido del tarjetahabiente / Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr> 
+<tr><td>CSSTPHONENUMBER</td><td>Required</td><td>String (30)</td><td>6</td><td>"Número de telefono. Cuidar el hecho que por default algunos comercios envían ""54"", contando entonces con 2 de los 6 caracteres requeridos. Acepta números, espacios y/o paréntesis. *Ejemplo *(011) 4567 8910"</td></tr> 
 <tr><td>CSSTPOSTALCODE</td><td>Required</td><td>String (10)</td><td>1</td><td>Código Postal</td></tr>
 <tr><td>CSSTSTATE</td><td>Required</td><td>String (2)</td><td>1</td><td>Estado (Si el country = US, el campo se valida para un estado v lido en USA)</td><tr> 
-<tr><td>CSSTSTREET1</td><td>Required</td><td>String (60)</td><td>1</td><td>Calle Numero interior Numero Exterior / Para los casos que no son de envío a domicilio, jam s enviar la dirección propia del comercio o correo donde se retire la mercadería, en ese caso replicar los datos de facturación.</td></tr>
+<tr><td>CSSTSTREET1</td><td>Required</td><td>String (60)</td><td>6</td><td>Calle Numero interior Numero Exterior / Para los casos que no son de envío a domicilio, jam s enviar la dirección propia del comercio o correo donde se retire la mercadería, en ese caso replicar los datos de facturación. Acepta acentos comunes, puntos, guion medio y alto, letras con acentos invertidos, ñ / No acepta guion bajo.</td></tr>
 <tr><td> CSSTSTREET2</td><td>Optional</td><td>String (60)</td><td></td><td>Barrio</td></tr> 
-<tr><td>CSMDD1 </td><td>Required</td><td>String (255)</td><td>1</td><td>Incluir numero de comercio proveniente del campo NROCOMERCIO del API DECIDIR</td></tr> 
-<tr><td>CSMDD2</td><td>Required</td><td>String (255)</td><td>1</td><td>Incluir el nombre del comercio, Decidir puede obtener este dato del portal de configuracion de comercios</td></tr>
-<tr><td> CSMDD3</td><td>Required (Catalogo)</td><td>String (255)</td><td>1</td><td>"Valores ejemplo: (retail, digital goods, services, travel, ticketing) Es recomendable que el API de decidir fije opciones seleccionables y no sean de captura libre para el comercio"</td></tr> 
-<tr><td>CSMDD4</td><td>Optional (Catalogo)</td><td>String (255)</td><td></td><td>"Valores ejemplo: (Visa, Master Card, Tarjeta Shopping, Banelco...) Es recomendable que el API de decidir fije opciones seleccionables y no sean de captura libre para el comercio. Se tienen que incluir todos los medios de pago aceptados"</td></tr>
-<tr><td> CSMDD5</td><td>Optional</td><td>String (255)</td><td></td><td>Valor numerico que detalle el numero de cuotas</td></tr>
-<tr><td>CSMDD6</td><td>Optional (Catalogo)</td><td>String (255)</td><td></td><td>"Valores ejemplo: (Web, Call Center, Mobile, Kiosko) Es recomendable que el API de decidir fije opciones seleccionables y no sean de captura libre para el comercio."</td></tr> 
+<tr><td> CSMDD3</td><td>Required (Catalogo)</td><td>String (255)</td><td>1</td><td>"Vertical: Retail, Digital goods, Services, Travel, Ticketing</td></tr> 
+<tr><td>CSMDD6</td><td>Optional (Catalogo)</td><td>String (255)</td><td></td><td>"Canal de venta: Web, Call Center, Mobile, Kiosko."</td></tr> 
 <tr><td>CSMDD7</td><td>Optional</td><td>String (255)</td><td></td><td>Numero de dias que tiene registrado un cliente en el portal del comercio.</td></tr>
 <tr><td>CSMDD8</td><td>Optional</td><td>String (255)</td><td></td><td>Valor Boleano para indicar si el usuario esta comprando como invitado en la pagina del comercio. Valores posibles (S/N)</td></tr> 
 <tr><td>CSMDD9</td><td>Optional</td><td>String (255)</td><td></td><td>Valor del password del usuario registrado en el portal del comercio. Incluir el valor en hash</td></tr> 
 <tr><td>CSMDD10</td><td>Optional</td><td>String (255)</td><td></td><td>Conteo de transacciones realizadas por el mismo usuario registrado en el portal del comercio</td></tr>
 <tr><td>CSMDD11</td><td>Optional</td><td>String (255)</td><td></td><td>Incluir numero de telefono adicional del comprador</td></tr> 
 <tr><td>CSMDD12</td><td>Optional</td><td>String (255)</td><td></td><td>Numero de dias que tiene el comercio para hacer la entrega</td></tr> 
-<tr><td>CSMDD13</td><td>Optional (Catalogo)</td><td>String (255)</td><td></td><td>"Valores ejemplo: (domicilio, click and collect, carrier) Es recomendable que el API de decidir fije opciones seleccionables y no sean de captura libre para el comercio."</td></tr> 
+<tr><td>CSMDD13</td><td>Optional (Catalogo)</td><td>String (255)</td><td></td><td>"Metodo de envío"</td></tr> 
 <tr><td>CSMDD14</td><td>Optional</td><td>String (255)</td><td></td><td>Valor booleano para identificar si el cliente requiere un comprobante fiscal o no S / N</td></tr>
 <tr><td>CSMDD15</td><td>Optional</td><td>String (255)</td><td></td><td>Incluir numero de cliente frecuente</td></tr>
 <tr><td>CSMDD16</td><td>Optional</td><td>String (255)</td><td></td><td>Incluir numero de cupon de descuento</td></tr>
-<tr><td>CSMDD35</td><td>Conditional (Transaccion con Visa)</td><td>String (255)</td><td></td><td>Tipo de documento solicitado por el comercio al cliente</td></tr>
-<tr><td>CSMDD36</td><td>Conditional (Transaccion con Visa)</td><td>String (255)</td><td></td><td>Numero de documento solicitado por el comercio al cliente</td></tr>
-<tr><td>CSMDD37</td><td>Conditional (Transaccion con Visa)</td><td>String (255)</td><td></td><td>Numero de puerta</td></tr>
-<tr><td> CSMDD38</td><td>onditional (Transaccion con Visa)</td><td>String (255)</td><td></td><td>Fecha de nacimiento del comprador, dato solicitado por el comercio. DECIDIR tiene el formato exacto de como se debe de capturar</td></tr>
-<tr><td>CSMDD39</td><td>Conditional (Transaccion con Visa)</td><td>String (255)</td><td></td><td>Valor numero correspondiente a la validacion de cada uno de los datos anteriores ejemplo: 1012</td></tr>
-<tr><td> CSMDD40</td><td>Optional</td><td>String(1)</td><td></td><td>"Valor para identificar si la transaccion ha sido reportada como fraude por parte del emisor. Incluir el parametro con valor = S Este parametro lo genera decidir a partir de la respuesta del emisor. En caso de una transaccion aceptada por el emisor o con rechazo diferente a fraude, NO INCLUIR"</td></tr> 
-<tr><td>CSMDD41</td><td>Optional</td><td>String(1)</td><td></td><td>Datos proporcionado por DECIDIR en el form. De pago. Valores posibles S/N</td></tr> 
-<tr><td>CSMDD42</td><td>Optional</td><td>String(1)</td><td></td><td>Datos proporcionado por DECIDIR en el form. De pago. Valores posibles S/N</td></tr>
-<tr><td>CSMDD80</td><td>Required </td><td>Integer (20)</td><td></td><td>Número de cuenta del vendedor</td></tr>
-<tr><td> CSMDD81</td><td>Required </td><td>String(255)</td><td></td><td>Mail del vendedor en TP</td></tr>
-<tr><td> CSMDD82</td><td>Required </td><td>Integer (6)</td><td></td><td>Rubro asignado por el analista de riesgos de Back Office</td></tr>
-<tr><td>CSMDD83</td><td>Required </td><td>Integer (2)</td><td></td><td>Antigüedad de la cuenta vendedor</td></tr> 
-<tr><td>CSMDD84</td><td>Required </td><td>String (15)</td><td></td><td>Consumidor Final / Profesional / Empresa</td></tr> 
-<tr><td>CSMDD85</td><td>Required </td><td>Integer(1)</td><td></td><td>0 (No se le pidió) / 1 (Se le pidió y se validó) / 2 (Uso Futuro)</td></tr>
-<tr><td> CSMDD86</td><td>Requerido (para Billetera)</td><td>Integer(20)</td><td></td><td>Número de cuenta del comprador</td></tr>
-<tr><td>CSMDD87</td><td>Requerido (para Billetera)</td><td>Integer (3)</td><td></td><td>Antigüedad de la cuenta comprador (Meses)</td></tr> 
-<tr><td>CSMDD88</td><td>Requerido (para Billetera)</td><td>Integer (3)</td><td></td><td>Cantidad de tarjetas Habilitadas de la Billetera</td></tr> 
-<tr><td>CSMDD89</td><td>Requerido (para Billetera)</td><td>Integer (2)</td><td></td><td>Nivel de Riesgo asignado al Medio de Pago que Utiliza</td></tr>
 </table>
 
 
@@ -348,6 +329,7 @@ array (size=1)
       'OPERATIONID' => string '01' (length=2)
       'CURRENCYCODE' => string '32' (length=2)
       'AMOUNT' => int 54
+      'AMOUNTBUYER' => string '60.50' (length=5)
       'TYPE' => string 'compra_online' (length=13)
       'INSTALLMENTPAYMENTS' => string '4' (length=1)
       'CUSTOMEREMAIL' => string 'cosme@fulanito.com' (length=18)
@@ -501,6 +483,11 @@ El formulario implementado debe contar al menos con los siguientes campos.
 	<select id="bancoCbx"></select>
 	<select id="promosCbx"></select>
 	<label id="labelPromotionTextId"></label>
+
+	<!-- Para los casos en el que el comercio opera con PEI -->
+        <label id="labelPeiCheckboxId"></label>
+	<input id="peiCbx"/>
+	
 	<input id="numeroTarjetaTxt"/>
 	<input id="mesTxt"/>
 	<input id="anioTxt"/>
@@ -510,8 +497,14 @@ El formulario implementado debe contar al menos con los siguientes campos.
 	<select id="tipoDocCbx"></select>
 	<input id="nroDocTxt"/>
 	<input id="emailTxt"/><br/>
-	<button id="MY_btnPagarConBilletera"/>
+
+	<!-- Para los casos en el que el comercio opera con PEI -->
+	<label id="labelPeiTokenTextId"></label>
+	<input id="peiTokenTxt"/>
+	
 	<button id="MY_btnConfirmarPago"/>
+	<button id="MY_btnPagarConBilletera"/>
+
 </body>
 ```
 

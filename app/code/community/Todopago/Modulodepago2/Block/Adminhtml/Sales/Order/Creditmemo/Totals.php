@@ -7,8 +7,8 @@ class Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Creditmemo_Totals exten
 
         $this->addTotal(new Varien_Object(array(
           'code' => 'todopago_costofinanciero',
-          'value' => $this->getSource()->getTodopagoCostofinanciero(),
-          'base_value' => $this->getSource()->getTodopagoCostofinanciero(),
+          'value' => $this->getSource()->getOrder()->getTodopagoCostofinanciero(),
+          'base_value' => $this->getSource()->getOrder()->getTodopagoCostofinanciero(),
           'label' => $this->helper('sales')->__('Otros cargos')
           )));
 
@@ -17,8 +17,8 @@ class Todopago_Modulodepago2_Block_Adminhtml_Sales_Order_Creditmemo_Totals exten
         $this->_totals['grand_total'] = new Varien_Object(array(
             'code' => 'grand_total',
             'strong' => true,
-            'value' => $this->getSource()->getGrandTotal(),
-            'base_value' => $this->getSource()->getBaseGrandTotal(),
+            'value' => $this->getSource()->getOrder()->getGrandTotal(),
+            'base_value' => $this->getSource()->getOrder()->getBaseGrandTotal(),
             'label' => $this->helper('sales')->__('Grand Total'),
             'area' => 'footer'
         ));

@@ -4,7 +4,7 @@ include_once dirname(__FILE__)."/../vendor/autoload.php";
 use TodoPago\Sdk;
 
 //común a todas los métodos
-$http_header = array('Authorization'=>'PRISMA f3d8b72c94ab4a06be2ef7c95490f7d3',
+$http_header = array('Authorization'=>'TODOPAGO 8A891C0676A25FBF052D1C2FFBC82DEE',
  'user_agent' => 'PHPSoapClient');
  
 //creo instancia de la clase TodoPago
@@ -14,15 +14,15 @@ $operationid = rand(1,10000000);
  
 //opciones para el método sendAuthorizeRequest
 $optionsSAR_comercio = array (
-	'Security'=>'f3d8b72c94ab4a06be2ef7c95490f7d3',
+	'Security'=>'8A891C0676A25FBF052D1C2FFBC82DEE',
 	'EncodingMethod'=>'XML',
-	'Merchant'=>2153,
+	'Merchant'=>41702,
 	'URL_OK'=>"http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].str_replace ($_SERVER['DOCUMENT_ROOT'], '', dirname($_SERVER['SCRIPT_FILENAME']))."/exito.php?operationid=$operationid",
 	'URL_ERROR'=>"http://".$_SERVER['SERVER_NAME'].":".$_SERVER['SERVER_PORT'].str_replace ($_SERVER['DOCUMENT_ROOT'], '', dirname($_SERVER['SCRIPT_FILENAME']))."/error.php?operationid=$operationid"
 );
 
 $optionsSAR_operacion = array (
-	'MERCHANT'=> "2153",
+	'MERCHANT'=> "41702",
 	'OPERATIONID'=>"50",
 	'CURRENCYCODE'=> 032,
 	'AMOUNT'=>"54",
@@ -39,10 +39,10 @@ $optionsSAR_operacion = array (
 	'CSSTEMAIL'=> "todopago@hotmail.com",
 	
 	'CSBTFIRSTNAME'=> "Juan",
-	'CSSTFIRSTNAME'=> "Juan",      
+	'CSSTFIRSTNAME'=> "LAURA",      
 	
 	'CSBTLASTNAME'=> "Perez",
-	'CSSTLASTNAME'=> "Perez",
+	'CSSTLASTNAME'=> "GONZALEZ",
 	
 	'CSBTPHONENUMBER'=> "541160913988",     
 	'CSSTPHONENUMBER'=> "541160913988",     
@@ -81,10 +81,10 @@ $optionsSAR_operacion = array (
  	
 //opciones para el método getAuthorizeAnswer
 $optionsGAA = array(	
-	'Security' => '0129b065cfb744718166913eba827a2f', 
-	'Merchant' => "35",
-	'RequestKey' => '710268a7-7688-c8bf-68c9-430107e6b9da',
-	'AnswerKey' => '693ca9cc-c940-06a4-8d96-1ab0d66f3ee6'
+	'Security' => '8A891C0676A25FBF052D1C2FFBC82DEE', 
+	'Merchant' => "41702",
+	'RequestKey' => '83765ffb-39c8-2cce-b0bf-a9b50f405ee3',
+	'AnswerKey' => '9c2ddf78-1088-b3ac-ae5a-ddd45976f77d'
 	);
 	
 //opciones para el método getAllPaymentMethods
@@ -112,9 +112,6 @@ $anul = array(
 );
 
 
-//creo instancia de la clase TodoPago
-$connector = new Sdk($http_header, "test");
-	
 //ejecuto los métodos
 $rta = $connector->sendAuthorizeRequest($optionsSAR_comercio, $optionsSAR_operacion);
 $rta2 = $connector->getAuthorizeAnswer($optionsGAA);
@@ -141,8 +138,8 @@ echo "<h3>var_dump de la respuesta de voidRequest</h3>";
 var_dump($rta7);
 
 $u1 = new TodoPago\Data\User();
-$u1->setUser("ejemplo@todopago.com.ar");
-$u1->setPassword("password");
+$u1->setUser("usuario@mail.com");
+$u1->setPassword("Password");
 
 //ejecuto los métodos
 $rta = $connector->getCredentials($u1);

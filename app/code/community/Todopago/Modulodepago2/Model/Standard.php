@@ -58,9 +58,9 @@ class Todopago_Modulodepago2_Model_Standard extends Mage_Payment_Model_Method_Ab
 		
 		Mage::log("Modulo de pago - Todopago ==> Response: " . json_encode($result));
         if($result['StatusCode'] != 2011) {
-            $errorCode = 'Invalid Data';
-            $errorMsg = 'Error Processing the request';
-            Mage::throwException($errorMsg);
+            $errorCode = $result['StatusCode'];
+            $errorMsg  = $result['StatusMessage'];
+	    throw new Mage_Core_Exception($result["StatusMessage"]);
         }
         return $this;
 

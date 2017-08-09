@@ -96,6 +96,9 @@ payment.watch("currentMethod",function(a,b,c){
 											$('overlay').insert("<div id='lightbox'></div>");
 											$('lightbox').insert('<iframe width="100%" height="100%" '+ ((a.responseJSON != null) ? ('src="' + a.responseJSON.url) : ('srcdoc="' + a.responseText))+'"></iframe>');
 									}});
+								},
+								onFailure: function(data) {
+									window.location = data.responseText.evalJSON().url;
 								}
 							}
 						);

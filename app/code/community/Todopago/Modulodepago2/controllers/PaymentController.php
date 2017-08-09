@@ -43,9 +43,9 @@ class Todopago_Modulodepago2_PaymentController extends Mage_Core_Controller_Fron
         $message = "";
 
 $status = Mage::getStoreConfig('payment/modulodepago2/order_status');
-if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');        
-$order->setState("new", $status, $message);
-        
+if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/order_status');
+$order->setState("new", $status, "");
+
         $productos = $order->getItemsCollection();
 
         $customer_id = $order->getCustomerId();
@@ -85,6 +85,12 @@ $order->setState("new", $status, $message);
             $maxCuotas = Mage::getStoreConfig('payment/modulodepago2/cuotas');
             $payDataOperacion ['MAXINSTALLMENTS'] = ( !is_null($maxCuotas) && $maxCuotas > 0 && is_numeric($maxCuotas))? $maxCuotas:MAX_CUOTAS_DEFAULT;
         }
+
+        $timeout = Mage::getStoreConfig('payment/modulodepago2/timeout');
+        if(!empty($timeout)){
+            $payDataOperacion ['TIMEOUT'] = Mage::getStoreConfig('payment/modulodepago2/timeout_ms');
+        }
+
 
 		$this->firstStep($payDataComercial, $payDataOperacion);
 
@@ -187,12 +193,14 @@ $order->setState("new", $status, $message);
                     $message = "Todo Pago: " . $first_step['StatusMessage'];
                 }
 
-								$order->cancel();
-								Mage::log("Orden cancelada");
+				$order->cancel();
+				Mage::log("Orden cancelada");
                 $order->setState($state, $status, $message);
                 $order->save();
                 Mage::log("Modulo de pago - TodoPago ==> redirige a: checkout/onepage/failure");
-                //Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+
+                $this->emptyCart($order);
+
                 if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
                     $this->getResponse()->clearHeaders()->setHeader('HTTP/1.0', 400, true);
                     $url = Mage::getUrl('checkout/onepage/failure', array('_secure' => true));
@@ -226,7 +234,9 @@ $order->setState("new", $status, $message);
             $order->setState($state, $status, $message);
             $order->save();
             Mage::log("Modulo de pago - TodoPago ==> redirige a: checkout/onepage/failure");
-            //Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+
+            $this->emptyCart($order);
+
             if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
                 $this->getResponse()->clearHeaders()->setHeader('HTTP/1.0', 400, true);
                 $url = Mage::getUrl('checkout/onepage/failure', array('_secure' => true));
@@ -251,13 +261,17 @@ public function secondStepAction(){
     $todopagotable = new Todopago_Modulodepago2_Model_Todopagotable();
     $todopagotable->load($this->getRequest()->get('Order'), "order_id");
     if($todopagotable->getAnswerKey() == null){
-        $this->lastStep($this->getRequest()->get('Order'), $this->getRequest()->get('Answer'));
+	if($this->getRequest()->get('Answer')) {
+	        $this->lastStep($this->getRequest()->get('Order'), $this->getRequest()->get('Answer'));
+	} else if($this->getRequest()->get('Error')){
+		$this->lastStep($this->getRequest()->get('Order'), null, $this->getRequest()->get('Error'));
+	}
     }else{
         Mage_Core_Controller_Varien_Action::_redirect('/', array('_secure' => true));
     }
 }
 
-public function lastStep($order_key, $answer_key){
+public function lastStep($order_key, $answer_key, $error = null){
     /*COMENTO LAS PARTES DONDE SE UTILIZAN LOS ESTADOS CREADOS POR EL MODULO*/
     Mage::log("init: ".__METHOD__);
 	$todopago_connector = Mage::helper('modulodepago2/connector')->getConnector();
@@ -275,6 +289,25 @@ public function lastStep($order_key, $answer_key){
     $security = Mage::helper('modulodepago2/ambiente')->get_security_code();
 
     $requestkey = $order->getTodopagoclave();
+
+    if($error != null) {
+            $status = Mage::getStoreConfig('payment/modulodepago2/estado_denegada');
+            if(empty($status)) $status = Mage::getStoreConfig('payment/todopago_avanzada/estado_denegada');
+            $state = $this->_get_new_order_state($status);
+
+            if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
+                $message = "Todo Pago (TEST): " . $error;
+            } else{
+                $message = "Todo Pago: " . $error;
+            }
+						$order->cancel();
+						Mage::log("Orden cancelada");
+            $order->setState($state, $status, $message);
+            $order->sendOrderUpdateEmail(true, $message);
+            $order->save();
+	    Mage::getSingleton('core/session')->addError($error);
+            Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
+    }
 
     // ahora vuelvo a consumir web service para confirmar la transaccion
     $optionsAnswer = array(
@@ -348,15 +381,11 @@ public function lastStep($order_key, $answer_key){
             $order->setGrandTotal($amountBuyer);
             $order->setBaseGrandTotal($amountBuyer);
 
-            $order->save();
-
 			$payment = $order->getPayment();
 			$payment->setTransactionId($second_step['AuthorizationKey']);
 			$payment->setParentTransactionId($payment->getTransactionId());
 
 			$payment->save();
-
-			$order->save();
 
 			$invoice = $order->prepareInvoice()
                    ->setTransactionId(1)
@@ -373,6 +402,8 @@ public function lastStep($order_key, $answer_key){
 				->addObject($invoice)
 				->addObject($invoice->getOrder())
 				->save();
+
+            $order->save();
 
             try{
                 $order->sendNewOrderEmail();
@@ -400,6 +431,10 @@ public function lastStep($order_key, $answer_key){
             $order->setState($state, $status, $message);
             $order->sendOrderUpdateEmail(true, $message);
             $order->save();
+
+            $this->emptyCart($order);
+
+	    Mage::getSingleton('core/session')->addError($second_step['StatusMessage']);
             Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));            }
         }
         catch(Exception $e){
@@ -413,11 +448,12 @@ public function lastStep($order_key, $answer_key){
             } else{
                 $message = "Todo Pago (Exception): " . $e;
             }
-						$order->cancel();
-						Mage::log("Orden cancelada");
+			$order->cancel();
+			Mage::log("Orden cancelada");
             $order->setState($state, $status, $message);
             $order->sendOrderUpdateEmail(true, $message);
             $order->save();
+
             Mage_Core_Controller_Varien_Action::_redirect('checkout/onepage/failure', array('_secure' => true));
         }
     }
@@ -470,5 +506,34 @@ public function lastStep($order_key, $answer_key){
 		$state = $statuses->getState();
 
         return $state;
+    }
+
+    private function emptyCart($order){
+
+        if (empty(Mage::getStoreConfig('payment/modulodepago2/cart_enabled'))){
+            $cart = Mage::getSingleton('checkout/cart');
+            $items = $order->getItemsCollection();
+
+            foreach ($items as $item) {
+                try {
+                    $cart->addOrderItem($item);
+                } catch (Mage_Core_Exception $e){
+                    if (Mage::getSingleton('checkout/session')->getUseNotice(true)) {
+                        Mage::getSingleton('checkout/session')->addNotice($e->getMessage());
+                    }
+                    else {
+                        Mage::getSingleton('checkout/session')->addError($e->getMessage());
+                    }
+                    
+                } catch (Exception $e) {
+                    Mage::getSingleton('checkout/session')->addException($e,
+                        Mage::helper('checkout')->__('Can not add item to shopping cart')
+                    );
+                }
+            }
+
+            $cart->save();
+        }
+
     }
 }

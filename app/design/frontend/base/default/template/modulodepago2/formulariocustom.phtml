@@ -51,6 +51,12 @@
 					</div>
 				</div>
 				<div class="field">
+					<label id="labelPeiCheckboxId" for="peiCbx" class="tp-label spacer">Pago con PEI</label>
+					<div class="input-box">
+						<input id="peiCbx" maxlength="16" title="Pago con PEI"/>
+					</div>
+				</div>
+				<div class="field">
 					<label for="numeroTarjetaTxt" class="tp-label required spacer"><em>*</em>Número de Tarjeta</label>
 					<div class="input-box">
 						<input class="input-text required-entry" id="numeroTarjetaTxt" maxlength="16" title="Número de Tarjeta"/>
@@ -101,6 +107,13 @@
 					<div class="input-box">
 						<input id="emailTxt"/><br/>
 						<span class="error" id="emailTxtError"></span>
+					</div>
+				</div>
+				<div class="field">
+					<label id="labelPeiTokenTextId" for="peiTokenTxt" class="tp-label">Token PEI</label>
+					<div class="input-box">
+						<input id="peiTokenTxt"/>
+						<span class="error" id="peiTokenTxtError"></span>
 					</div>
 				</div>
 				<div id="tp-bt-wrapper">
@@ -157,13 +170,21 @@
 			console.log(parametros.field + " ==> " + parametros.error);
 		}
 		function billeteraPaymentResponse(response) {
-			window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;
+			if(response.AuthorizationKey) {
+				window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;
+			} else {
+				window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Error="+response.ResultMessage;
+			}
 		}
 		function customPaymentSuccessResponse(response) {
 			window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;
 		}
 		function customPaymentErrorResponse(response) {
-			window.top.location = "<?php echo Mage::getUrl('checkout/onepage/failure', array('_secure' => true)); ?>";
+			if(response.AuthorizationKey) {
+				window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Answer="+response.AuthorizationKey;
+			} else {
+				window.top.location = "<?php echo Mage::getBaseUrl().'modulodepago2/payment/secondStep?Order='.$this->orden; ?>&Error="+response.ResultMessage;
+			}
 		}
 		function initLoading() {
 			console.log('Cargando');
