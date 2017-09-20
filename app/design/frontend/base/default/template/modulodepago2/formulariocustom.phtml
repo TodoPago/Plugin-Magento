@@ -1,25 +1,23 @@
 <?php
 	if(Mage::getStoreConfig('payment/modulodepago2/modo_test_prod') == "test"){
-		?><script src="https://developers.todopago.com.ar/resources/TPHybridForm-v0.1.js"></script><?php
+		?><script src="https://developers.todopago.com.ar/resources/v2/TPBSAForm.min.js"></script><?php
 	} else {
-		?><script src="https://forms.todopago.com.ar/resources/TPHybridForm-v0.1.js"></script><?php
+		?><script src="https://forms.todopago.com.ar/resources/v2/TPBSAForm.min.js"></script><?php
 	}
 ?>
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'modulodepago2/jquery.js'; ?>"></script>
 <script>
 	jQuery(document).ready(function() {
-		jQuery("#formaDePagoCbx").change(function () {
+		/*jQuery("#formaPagoCbx").change(function () {
 			if(this.value == 500 || this.value == 501){
 				jQuery(".spacer").hide();
 			}else{
 				jQuery(".spacer").show();
 			}
-		})
+		})*/
 		jQuery("#tp-bt-wrapper").click(function(e){
 			jQuery("input,select").removeClass("error");
 			jQuery("span.error").html("");
-			//TPFORMAPI.hybridForm.handlePayment();
-			//e.preventDefault();
 		})
 	});
 </script>
@@ -30,104 +28,116 @@
 		<div id="tp-form-tph" class="left">
 			<div id="tp-logo"></div>
 			<div id="tp-content-form fieldset"><br/>
-				<div class="field">
-					<label for="formaDePagoCbx" class="tp-label required"><em>*</em>Medio de Pago</label>
+				<div class="field field-payment-method">
+					<label for="formaPagoCbx" class="tp-label required"><em>*</em>Forma de Pago</label>
 					<div class="input-box">
-						<select id="formaDePagoCbx"></select><span class="error" id="formaDePagoCbxError"></span>
+						<select id="formaPagoCbx" ></select><span class="error" id="formaPagoCbxError"></span>
 					</div>
 				</div>
-				<div class="field">
-					<label for="bancoCbx" class="tp-label required spacer"><em>*</em>Banco Emisor</label>
-					<div class="input-box">
-						<select id="bancoCbx"></select><span class="error" id="bancoCbxError"></span>
-					</div>
-				</div>
-				<div class="field">
-					<label for="promosCbx" class="tp-label required spacer"><em>*</em>Cantidad de cuotas</label>
-					<div class="input-box">
-						<select id="promosCbx" class="left"></select><span class="error" id="promosCbxError"></span>
-						<label id="labelPromotionTextId" class="left tp-label"></label>
-						<div class="clear"></div>
-					</div>
-				</div>
-				<div class="field">
-					<label id="labelPeiCheckboxId" for="peiCbx" class="tp-label spacer">Pago con PEI</label>
-					<div class="input-box">
-						<input id="peiCbx" maxlength="16" title="Pago con PEI"/>
-					</div>
-				</div>
-				<div class="field">
-					<label for="numeroTarjetaTxt" class="tp-label required spacer"><em>*</em>Número de Tarjeta</label>
-					<div class="input-box">
-						<input class="input-text required-entry" id="numeroTarjetaTxt" maxlength="16" title="Número de Tarjeta"/>
-						<span class="error" id="numeroTarjetaTxtError"></span>
-					</div>
-				</div>
-				<div class="field">
-					<label for="mesTxt" class="tp-label required spacer"><em>*</em>Fecha de Vencimiento</label>
-					<div class="dateFields">
+
+				<div id="fields-card-payment" style="display:none;" >
+					<div class="field">
+						<label for="numeroTarjetaTxt" class="tp-label required spacer"><em>*</em>Número de Tarjeta</label>
 						<div class="input-box">
-							<input id="mesTxt" maxlength="2" class="left input-text required-entry small">
-							<span class="left spacer">/</span>
-							<input id="anioTxt" maxlength="2" class="left input-text required-entry small">
+							<input id="numeroTarjetaTxt" class="input-text required-entry"  maxlength="16" title="Número de Tarjeta"/>
+							<span class="error" id="numeroTarjetaTxtError"></span>
+							<label id="numeroTarjetaLbl"  class="error"></label>
 						</div>
-						<div class="clear"></div><span class="error" id="anioTxtError"></span>
 					</div>
-				</div>
-				<div class="field">
-					<label for="codigoSeguridadTxt" class="tp-label required spacer"><em>*</em>Código de Seguridad</label>
-					<div class="input-box">
-						<input id="codigoSeguridadTxt" class="left input-text required-entry small"/>
-						<label id="labelCodSegTextId" class="left tp-label spacer"></label>
-						<span class="error" id="codigoSeguridadTxtError"></span>
-						<div class="clear"></div>
-					</div>
-				</div>
-				<div class="field">
-					<label for="apynTxt" class="tp-label required"><em>*</em>Nombre y Apellido</label>
-					<div class="input-box">
-						<input id="apynTxt"/>
-						<span class="error" id="apynTxtError"></span>
-					</div>
-				</div>
-				<div class="field">
-					<label for="tipoDocCbx" class="tp-label required spacer"><em>*</em>Documento</label>
-					<div>
+				
+					<div class="field">
+						<label for="medioPagoCbx" class="tp-label required"><em>*</em>Medio de Pago</label>
 						<div class="input-box">
-							<select id="tipoDocCbx" class="left"></select>
-							<span class="left spacer">&nbsp;</span>
-							<input id="nroDocTxt" class="left input-text required-entry" />
+							<select id="medioPagoCbx"></select><span class="error" id="medioPagoCbxError"></span>
 						</div>
-						<div class="clear"></div>
-						<span class="error" id="nroDocTxtError"></span>
+					</div>
+					<div class="field">
+						<label for="bancoCbx" class="tp-label required spacer"><em>*</em>Banco Emisor</label>
+						<div class="input-box">
+							<select id="bancoCbx"></select><span class="error" id="bancoCbxError"></span>
+						</div>
+					</div>
+
+					<div class="field">
+						<label for="promosCbx" class="tp-label required spacer"><em>*</em>Cantidad de cuotas</label>
+						<div class="input-box">
+							<select id="promosCbx" class="left"></select><span class="error" id="promosCbxError"></span>
+							<div class="clear"><label id="promosLbl" class="left"></label></div>
+						</div>
+					</div>
+
+					<div class="field">
+						<label id="peiLbl" for="peiCbx" class="tp-label spacer">Pago con PEI</label>
+						<div class="input-box">
+							<input id="peiCbx" maxlength="16" title="Pago con PEI"/>
+						</div>
+					</div>
+					<div class="field">
+						<label for="mesCbx" class="tp-label required spacer"><em>*</em>Fecha de Vencimiento</label>
+						<div class="dateFields">
+							<div class="input-box">
+								<select id="mesCbx" maxlength="2" class="left required-entry small"></select>
+								<span class="left spacer">/</span>
+								<select id="anioCbx" maxlength="2" class="left required-entry small"></select>
+								<div class="clear"><label id="fechaLbl" class="left error"></label></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="field">
+						<div class="input-box">
+							<label for="codigoSeguridadTxt" class="left tp-label spacer tp-label required"><em>*</em>Código de Seguridad</label>
+							<input id="codigoSeguridadTxt" class="left input-text required-entry small"/>
+							<span class="error" id="codigoSeguridadTxtError"></span>
+							<label id="codigoSeguridadLbl" class="left tp-label spacer"></label>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="field">
+						<label for="nombreTxt" class="tp-label required"><em>*</em>Nombre y Apellido</label>
+						<div class="input-box">
+							<input id="nombreTxt"/>
+							<span class="error" id="nombreTxtError"></span>
+						</div>
+					</div>
+					<div class="field">
+						<label for="tipoDocCbx" class="tp-label required spacer"><em>*</em>Documento</label>
+						<div>
+							<div class="input-box">
+								<select id="tipoDocCbx" class="left"></select>
+								<span class="left spacer">&nbsp;</span>
+								<input id="nroDocTxt" class="left input-text required-entry" />
+							</div>
+							<div class="clear"></div>
+							<span class="error" id="nroDocTxtError"></span>
+						</div>
+					</div>
+					<div class="field">
+						<label for="emailTxt" class="tp-label required"><em>*</em>Email</label>
+						<div class="input-box">
+							<input id="emailTxt"/><br/>
+							<span class="error" id="emailTxtError"></span>
+						</div>
+					</div>
+					<div class="field">
+						<label id="tokenPeiLbl" for="tokenPeiTxt" class="tp-label">Token PEI</label>
+						<div class="input-box">
+							<input id="tokenPeiTxt"/>
+							<span class="error" id="peiTokenTxtError"></span>
+						</div>
 					</div>
 				</div>
-				<div class="field">
-					<label for="emailTxt" class="tp-label required"><em>*</em>Email</label>
-					<div class="input-box">
-						<input id="emailTxt"/><br/>
-						<span class="error" id="emailTxtError"></span>
+					<div class="button-billetera">
+						<button id="MY_btnConfirmarPago" title="Pagar" class="button"><span>Pagar</span></button>
+						<button id="MY_btnPagarConBilletera" title="Pagar con Billetera" class="button"><span>Pagar con Billetera</span></button>
 					</div>
-				</div>
-				<div class="field">
-					<label id="labelPeiTokenTextId" for="peiTokenTxt" class="tp-label">Token PEI</label>
-					<div class="input-box">
-						<input id="peiTokenTxt"/>
-						<span class="error" id="peiTokenTxtError"></span>
-					</div>
-				</div>
-				<div id="tp-bt-wrapper">
-					<button id="MY_btnPagarConBilletera" title="Pagar con Billetera" class="button"><span>Pagar con Billetera</span></button>
-					<button id="MY_btnConfirmarPago" title="Pagar" class="button"><span>Pagar</span></button>
-				</div>
+
 			</div>
 		</div>
 
 	</div>
 <?php
-
 	//aca ponco la consula la base de datos a partir de orden id
-
 ?>
 
 	<script>
@@ -140,6 +150,12 @@
 		var mail = "<?php echo $this->mail; ?>";
 		var CompleteName = "<?php echo $this->nombre; ?>";
 
+
+		jQuery("#formaPagoCbx").change(function(){
+		    if ( jQuery("#formaPagoCbx").val()==1 ){
+		    	jQuery("#fields-card-payment").show();
+		    }else{ jQuery("#fields-card-payment").hide(); }
+		});
 
 		/************* CONFIGURACION DEL API ************************/
 		window.TPFORMAPI.hybridForm.initForm({

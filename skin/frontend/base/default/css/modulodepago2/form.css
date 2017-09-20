@@ -37,12 +37,20 @@
 	width:41px;
 }
 
+.field-payment-method{
+	padding-bottom: 22px;
+} 
+
+.button-billetera{
+	margin-left: 7px;
+}
+
 .dateFields .spacer{	
 	margin: 10px -4px 0px 7px;
 }
 
 .small {
-	width:36px;
+	width: 58px;
 }
 
 .left{
@@ -56,4 +64,5 @@
 }
 .tp-label{
 	margin:8px 0px 0px 13px;
+	width:100%;
 }
