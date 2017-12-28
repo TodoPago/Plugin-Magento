@@ -91,7 +91,19 @@ $order->setState("new", $status, "");
             $payDataOperacion ['TIMEOUT'] = Mage::getStoreConfig('payment/modulodepago2/timeout_ms');
         }
 
+        //plugin information
+        $payDataOperacion ['ECOMMERCENAME'] = "MAGENTO";
+        $payDataOperacion ['ECOMMERCEVERSION'] = Mage::getVersion();
+        $payDataOperacion ['CMSVERSION'] = "";
+        
+        if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
+            $formMode = "H";
+        }else{
+            $formMode = "E";
+        }
 
+        $payDataOperacion ['PLUGINVERSION'] = (string)Mage::getConfig()->getNode('modules/Todopago_Modulodepago2/version')."-".$formMode;
+        
         $this->firstStep($payDataComercial, $payDataOperacion);
 
     }

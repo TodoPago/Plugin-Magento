@@ -1,11 +1,8 @@
-
-
 <div class="entry-edit">
 	<div class="entry-edit-head">
 		<h4><?php echo $this->__('&Uacute;ltimo Status'); ?></h4>
 	</div>
 	<div class="fieldset fieldset-wide">
-		
 		<h5>Estado de la operaci&oacute;n</h5>
 		<h4>Actualizado al: <?php echo date("Y-m-d", Mage::getModel('core/date')->timestamp(time()));?></h4>
 		<table>
@@ -14,32 +11,9 @@
 				echo "<p>Status en ambiente de test</p>";
 			}
 			$status = $this->getLastStatus();
-			if(isset($status['Operations'])&&is_array($status['Operations'])) {
-				foreach ($status['Operations'] as $key => $value) {
-					if($key == "REFUNDS") {
-						echo "<tr><td colspan='2'><strong>Devoluciones</strong></td></tr>";
-						if(count($value)>0) {
-							if(isset($value["REFUND"]) && isset($value["REFUND"]["ID"])) {
-							   $value = array($value["REFUND"]);
-							} else {
-							   $value = $value["REFUND"];
-							}
-							$i=1;
-							foreach($value as $v) {
-								echo "<tr><td><b>Id:&nbsp;</b>".$v["ID"]."</td><td><b>Fecha:</b>&nbsp;".$v["DATETIME"]."</td><td><b>Monto:</b>&nbsp;".$v["AMOUNT"]."</td></tr>";
-								echo "<tr><td colspan='3'>-----------</td></tr>";
-								$i++;
-							}
-						} else {
-							echo "<tr><td colspan='2'>Ninguna</td></tr>";
-							echo "<tr><td colspan='2'>-----------</td></tr>";
-						}
-					} else if(is_array($value)) {
-						echo "<tr><td><strong>$key: </strong></td><td>".implode(" - ",$value)."</td></tr>";
-					} else {
-						echo "<tr><td><strong>$key: </strong></td><td>".$value."</td></tr>";	
-					}
-				}
+
+			if(isset($status['Operations']) && is_array($status['Operations'])) {
+				echo "<table>".$this->printGetStatus($status['Operations'], 0)."</table>";
 			} else {
 				echo "<tr><td>Sin datos</td><td></td></tr>";
 			}
@@ -49,6 +23,3 @@
 	</div>
 	
 </div>
-
-
-

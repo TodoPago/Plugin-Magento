@@ -31,58 +31,58 @@
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</active>
-							<title translate="label">
-								<label>Nombre a mostrar en front end</label>
-								<comment>Nombre con el que aparecera el Medio de Pago
-								</comment>
-								<frontend_type>text</frontend_type>
-								<sort_order>11</sort_order>
-								<show_in_default>1</show_in_default>
-								<show_in_website>1</show_in_website>
-								<show_in_store>1</show_in_store>
-							</title>
-							<cs_verticales translate="label">
-								<label>Segmento del Comercio</label>
-								<frontend_type>select</frontend_type>
-								<source_model>modulodepago2/system_config_source_csverticales
-								</source_model>
-								<comment>La elección del segmento determina los tipos de datos a enviar</comment>
-								<sort_order>12</sort_order>
-								<show_in_default>1</show_in_default>
-								<show_in_website>1</show_in_website>
-								<show_in_store>1</show_in_store>
-							</cs_verticales>
-							<!--<cs_canaldeventa translate="label">
-								<label>Canal de Ingreso del Pedido</label>
-								<frontend_type>select</frontend_type>
-								<source_model>modulodepago2/system_config_source_cscanalesdeventa
-								</source_model>
-								<comment></comment>
-								<sort_order>43</sort_order>
-								<show_in_default>1</show_in_default>
-								<show_in_website>1</show_in_website>
-								<show_in_store>1</show_in_store>
-							</cs_canaldeventa>-->
-							<cs_deadline translate="label">
-								<label>Dead Line</label>
-								<frontend_type>text</frontend_type>
-								<comment><![CDATA[días máximos para la entrega]]></comment>
-								<sort_order>13</sort_order>
-								<show_in_default>1</show_in_default>
-								<show_in_website>1</show_in_website>
-								<show_in_store>1</show_in_store>
-							</cs_deadline>
+						<!--title translate="label">
+							<label>Nombre a mostrar en front end</label>
+							<comment>Nombre con el que aparecera el Medio de Pago
+							</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title-->
+						<cs_verticales translate="label">
+							<label>Segmento del Comercio</label>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_csverticales
+							</source_model>
+							<comment>La elección del segmento determina los tipos de datos a enviar</comment>
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cs_verticales>
+						<!--<cs_canaldeventa translate="label">
+							<label>Canal de Ingreso del Pedido</label>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_cscanalesdeventa
+							</source_model>
+							<comment></comment>
+							<sort_order>43</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cs_canaldeventa>-->
+						<cs_deadline translate="label">
+							<label>Dead Line</label>
+							<frontend_type>text</frontend_type>
+							<comment><![CDATA[días máximos para la entrega]]></comment>
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cs_deadline>
 
-							<modo_test_prod translate="label">
-								<comment>Debe ser cofigurado en CONFIGURACION - AMBIENTE DEVELOPERS / PRODUCCION</comment>
-								<label>Ambiente Developers o Producción</label>
-								<frontend_type>select</frontend_type>
-								<source_model>modulodepago2/system_config_source_testproduccion</source_model>
-								<sort_order>15</sort_order>
-								<show_in_default>1</show_in_default>
-								<show_in_website>1</show_in_website>
-								<show_in_store>1</show_in_store>
-							</modo_test_prod>
+						<modo_test_prod translate="label">
+							<comment>Debe ser cofigurado en CONFIGURACION - AMBIENTE DEVELOPERS / PRODUCCION</comment>
+							<label>Ambiente Developers o Producción</label>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_testproduccion</source_model>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</modo_test_prod>
 
 						<hibrido translate="label">
 							<comment>Activa o desactiva el formulario híbrido (Si: formulario híbrido insite, No: redirección a TodoPago)</comment>

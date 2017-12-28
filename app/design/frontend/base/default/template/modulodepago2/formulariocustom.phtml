@@ -8,17 +8,20 @@
 <script src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_JS).'modulodepago2/jquery.js'; ?>"></script>
 <script>
 	jQuery(document).ready(function() {
-		/*jQuery("#formaPagoCbx").change(function () {
-			if(this.value == 500 || this.value == 501){
-				jQuery(".spacer").hide();
-			}else{
-				jQuery(".spacer").show();
-			}
-		})*/
 		jQuery("#tp-bt-wrapper").click(function(e){
 			jQuery("input,select").removeClass("error");
 			jQuery("span.error").html("");
 		})
+
+	    setTimeout(function () {
+	    	if ( jQuery("#formaPagoCbx").val() == 1 ){  		
+		    	jQuery("#fields-card-payment").show();
+		    }else{   		
+		    	jQuery("#fields-card-payment").hide();
+		    }
+
+        }, 1000);
+
 	});
 </script>
 <link rel="stylesheet" href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN)."/frontend/base/default/css/modulodepago2/form.css";?>">
@@ -35,7 +38,7 @@
 					</div>
 				</div>
 
-				<div id="fields-card-payment" style="display:none;" >
+				<div id="fields-card-payment">
 					<div class="field">
 						<label for="numeroTarjetaTxt" class="tp-label required spacer"><em>*</em>Número de Tarjeta</label>
 						<div class="input-box">
@@ -151,11 +154,6 @@
 		var CompleteName = "<?php echo $this->nombre; ?>";
 
 
-		jQuery("#formaPagoCbx").change(function(){
-		    if ( jQuery("#formaPagoCbx").val()==1 ){
-		    	jQuery("#fields-card-payment").show();
-		    }else{ jQuery("#fields-card-payment").hide(); }
-		});
 
 		/************* CONFIGURACION DEL API ************************/
 		window.TPFORMAPI.hybridForm.initForm({
@@ -204,9 +202,18 @@
 		}
 		function initLoading() {
 			console.log('Cargando');
+			$("#fields-card-payment").hide();
 		}
+		
 		function stopLoading() {
 			console.log('Stop loading...');
+			setTimeout(function () {
+				if($("#formaPagoCbx").val() == 1){
+					$("#fields-card-payment").show();
+				}else{
+					$("#fields-card-payment").hide();
+				}
+			}, 500);
 		}
 	</script>
 </body></html>

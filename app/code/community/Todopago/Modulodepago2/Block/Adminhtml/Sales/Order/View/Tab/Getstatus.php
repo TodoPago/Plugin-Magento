@@ -54,6 +54,25 @@ class Todopago_modulodepago2_Block_Adminhtml_Sales_Order_View_Tab_Getstatus exte
 			return $exception;
 		}
 	}
+	
+	public function printGetStatus($arrayResult, $indent) {
+		$rta = '';
+
+		foreach ($arrayResult as $key => $value) {
+		    if ($key !== 'nil' && $key !== "@attributes") {
+			if (is_array($value) ){
+			    $rta .= "<tr>";
+			    $rta .= "<td>".str_repeat("-", $indent) . "<strong>$key:</strong></td>";
+			    $rta .= "<td>".$this->printGetStatus($value, $indent + 2)."</td>";
+			    $rta .= "</tr>";
+
+			} else {
+			    $rta .= "<tr><td>".str_repeat("-", $indent) . "<strong>$key:</strong></td><td> $value </td></tr>";
+			}
+		    }
+		}
+		return $rta;
+	    }
 
 	private  function getOrderIncrementId($order_id){
 		$order = Mage::getModel("sales/order")->load($order_id)->getIncrementId();

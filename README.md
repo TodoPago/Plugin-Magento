@@ -170,7 +170,7 @@ Para efectivizar la prevenci&oacute;n de fraude se han creado nuevos atributos d
 <a name="constrans" ></a>
 #### Consulta de Transacciones
 El plug in crea un nuevo <strong>tab</strong> para poder consultar <strong>on line</strong> las características de la transacci&oacute;n en el sistema de Todo Pago.</br>
-![imagen consulta de trnasacciones](https://raw.githubusercontent.com/TodoPago/imagenes/master/README.img/getstatus.PNG)
+![imagen consulta de transacciones](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/getstatus.png)
 
 [<sub>Volver a inicio</sub>](#inicio)
 
