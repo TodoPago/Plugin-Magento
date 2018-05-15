@@ -1,0 +1,61 @@
+/*-------------------------------------*/
+/*MEDIA QUERIES*/
+/*-------------------------------------*/
+
+/* Big tablet to 1200px(widths smaller than the 1140px row) */
+@media only screen and (max-width: 1200px) {
+}
+
+/* Small tablet to big tablet (from 768px to 1023px) */
+@media only screen and (max-width: 1023px) {
+    .tp_wrapper{
+        font-size: 90%;
+    }
+    
+    .text_small{
+        height: 20px;
+    }
+    
+    .confirmacion{
+        font-size:95%;
+    }
+}
+
+/* Small phones to small tablet (from 481px to 767px) */
+@media only screen and (max-width: 767px) {
+    .tp_col{
+        width:100%;
+    }
+    
+    h3{
+        text-align: center;
+    }
+    
+    .confirmacion{
+        font-size:91%;
+    }
+
+    #peiLbl{
+        height:77px !important;
+    }
+
+    .switch{
+        margin: 16px 9px 0 0;
+    }
+
+    .logocc{
+        left:83%;
+    }
+}
+
+/* (from 0px to 480px) */
+@media only screen and (max-width: 480px) {
+    .tp_wrapper{
+        font-size: 65%;
+    }
+
+    .logocc{
+        left:80%;
+    }
+}
+

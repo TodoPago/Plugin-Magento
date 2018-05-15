@@ -1,0 +1,445 @@
+/*-------------------------------------*/
+/*GENERAL CONFIGURATION*/
+/*-------------------------------------*/
+.tp_wrapper{
+    outline:0;
+    font-size: 115%;
+    color: #909090;
+    width:75%;
+    margin:40px auto 0 auto;
+}
+
+/*-------------------------------------*/
+/*GRID CONFIGURATION*/
+/*-------------------------------------*/
+
+.tp_col{
+    overflow-x: hidden;
+}
+
+/*-------------------------------------*/
+/*REUSABLE COMPONENTS*/
+/*-------------------------------------*/
+.tp_btn:link,
+.tp_btn:hover{
+    color:#fff;
+}
+
+.tp_btn{
+    width: 75%;
+    padding: 7px 50px;
+    font-weight: bold;
+    border:0;
+    border-radius: 4px;
+    background-color:#E6007E;
+    color:#fff;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    margin:0 0 0 12%;
+}
+
+.tp_btn:hover{
+    background-color:#ee0075;
+    color:#fff;
+}
+
+.tp_btn .tp_btn_sm{
+    width: 70%;
+}
+
+.tp_btn .tp_btn_lg{
+    width: 100%;
+}
+
+section{
+    margin-bottom: 30px;
+    padding: 30px;
+    border:1px solid transparent;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 2px rgba(131, 121, 112, 0.4);
+            box-shadow: 0 0 2px rgba(131, 121, 112, 0.4);
+}
+
+.tp_color_text{
+    color:#E6007E;
+}
+
+.tp_color_text:hover{
+    color:red;
+}
+
+.element_invisible{
+    overflow: hidden;
+    visibility: hidden;
+    height: 1px;
+    position: absolute;
+}
+
+h1{
+    font-size: 140%;
+}
+
+.text_small{
+    display: inline-block;
+    height:14px;
+    font-size: 11px;
+    margin-bottom: 6px;
+}
+
+h3{
+    font-size: 19px;
+    text-transform: none !important; 
+}
+
+.billetera_virtual_tp,
+.billetera_tp,
+.billeterafm_tp{
+    border:1px solid #c4c4c4;
+}
+
+.billeterafm_tp{
+    display:none;
+}
+
+#tp-powered {
+    height: 40px !important;
+    float: right;
+    font-size: 12px;
+}
+
+#tp-powered img {
+    height: 30px !important;
+    margin: -24px 0px 0 69px;
+}
+
+span.error{
+    margin-top:3px;
+    color:red;
+    font-size:10px;
+}
+
+label{
+  font-size: 11px !important;
+}
+
+label.error{
+    color:red;
+    font-size:11px;
+}
+
+.texto_billetera_virtual p{
+  margin:0 0 0 0;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px!important;
+}
+
+#promosLbl{
+    font-size: 28px !important;
+    margin: -22px 0 0 6px;
+    font-weight: normal;
+}
+
+#tpForm{
+    display:none;
+}
+
+button{
+   cursor:pointer !important;
+}
+
+.confirmacion {
+    /*margin: 0 0 0 12%;*/
+    font-size: 15px;
+    text-align: center;
+}
+
+.header_info{
+  background-color: #c0c0c0;
+  color:white;
+  font-size: 17px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 28px; 
+  padding: 8px 0;
+  font-family: 'Cabin',sans-serif;
+  display:none;
+}
+
+.header_info .bold{
+  font-weight: bold;
+}
+
+.cardbox{
+  position: relative;
+}
+
+.inputcc{
+  width:100% !important;
+}
+
+.logocc{
+  position: absolute;
+  top: 26px;
+  left: 85%;
+}
+
+.tp_col_dni{
+  width:35% !important;
+}
+
+.tp_col_num{
+  width:62% !important;
+}
+
+#btn_Billetera{
+  font-size: 12px;
+}
+
+#tokenPeiLbl{
+  text-transform: uppercase;
+}
+
+#tokenPeiLbl strong{
+  font-size: 10px !important;
+}
+
+#tokenPeiLbl p{
+  font-size: 9px !important;
+}
+
+#tokenPeiTxt{
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+
+#codigoSeguridadTxt{
+  margin: 1px 0 0 0;
+}
+
+#nombreTxt{
+  margin: 3px 0 0 0;
+}
+
+/*-------------------------------------*/
+/*FORMS*/
+/*-------------------------------------*/
+.tp_form_control{
+    height:36px;
+    display: inline-block;
+    width:100%;
+}
+
+input.tp_form_control{
+    border:0;
+    border-bottom: 1px solid #c4c4c4;
+    color:#909090;
+}
+
+input[type=text].tp_form_control,
+input[type=email].tp_form_control,
+input[type=password].tp_form_control,
+
+select.tp_form_control{
+    background-color: #fff;
+    padding:0 3%;
+    border-top: 0px solid #000;
+    border-left: 0px solid #000;
+    border-right: 0px solid #000;
+    border-bottom: 1px solid #c4c4c4;
+    color:#909090;
+    height: 39px;
+}
+
+select:disabled {
+  background-color: #eeeeee;
+}
+
+.med_width{
+  width:50%;
+}
+
+.full_width{
+  width:100%;
+}
+
+#formaPagoCbx{
+    display:none;
+}
+
+label{
+  color:#909090;
+}
+
+#tp-tarjeta-logo {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+#numeroTarjetaLbl{
+  dispĺay:none !important;
+}
+
+.installments{
+  margin:12px 0 0 0;  
+}
+
+.pei_wrapper{
+  width:80% !important;
+}
+
+.text_legals{
+  text-align: center;
+  font-size: 11px;
+}
+
+/*pei box*/
+#peibox{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 0 0 0 0 !important;
+    display:none;
+    border: 1px solid #c4c4c4;
+    color: #555369;
+    background-color: #eee;
+    padding: 0 0 0 0 !important;
+}
+
+#peiLbl{
+  height:83px !important;
+  text-transform: uppercase !important;
+}
+
+#peiLbl strong{
+    margin:0 0 4px 15px;
+    font-size: 13px !important;
+    width: 100%;
+}
+
+#peiLbl p{
+    margin:3px 0 0 15px !important;
+    border-top:1px solid #000;
+    padding: 6px 0 0 0;
+    font-size: 11px !important;
+}
+
+#peiCbx{
+    margin:0 0 0 22px;
+}
+
+.payment-method{
+    display:none !important;
+}
+
+.billeterafm_tp{
+    display:none;   
+    border:1px solid #c4c4c4;
+}
+
+/*-------------------------------------*/
+/*THE SLIDER*/
+/* The switch - the box around the slider */
+/* Hide default HTML checkbox */
+/*-------------------------------------*/
+.switch{
+    margin: 16px 26px 0 0;
+    float:right;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #adadad;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#slider-text {
+    z-index: 1000;
+    transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+    width: 60%;
+    height: 100%;
+    position: absolute;
+    padding: 4px 0 0 4px;
+    font-size: 12px;
+    left: 0;
+    color: white;
+    top: 0;
+}
+
+input:checked + .slider {
+  background-color: #e6007e;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/*-------progress bar--------*/
+
+.progress-barform {
+  float: left;
+  width: 0%;
+  height: 20px;
+  margin:15px 5px 0 5px;
+  font-size: 12px;
+  color: #fff;
+  text-align: center;
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease; }
+
+.progress-striped .progress-barform {
+  background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.15)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.15)), color-stop(0.75, rgba(255, 255, 255, 0.15)), color-stop(0.75, transparent), to(transparent));
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0));
+  background-size: 40px 40px; }
+
+.progress.active .progress-barform {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  -moz-animation: progress-bar-stripes 2s linear infinite;
+  -ms-animation: progress-bar-stripes 2s linear infinite;
+  -o-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite; }

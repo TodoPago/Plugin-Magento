@@ -94,7 +94,6 @@ $order->setState("new", $status, "");
         //plugin information
         $payDataOperacion ['ECOMMERCENAME'] = "MAGENTO";
         $payDataOperacion ['ECOMMERCEVERSION'] = Mage::getVersion();
-        $payDataOperacion ['CMSVERSION'] = "";
         
         if(Mage::getStoreConfig('payment/modulodepago2/hibrido') == 1) {
             $formMode = "H";

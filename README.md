@@ -58,9 +58,9 @@ Para llegar al menu de configuración ir a: <em>System->Configuration</em> y sel
 
 En la configuracion del plugin tambien estara la posibilidad de mostrarle al cliente el formulario de pago de TodoPago integrada en el sitio. 
 Para esto , en la configuracion se debe seleccionar YES en el campo Utilizar formulario híbrido:
-![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/formHibrid1.png)
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/form_hibridov3.png)
 <sub></br>Del lado del cliente el formulario se vera asi:</br></sub> 
-![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/formHibrid2.png)
+![imagen de configuracion](https://raw.githubusercontent.com/TodoPago/imagenes/master/magento/formhibridov3_billetera.png)
 
 [<sub>Volver a inicio</sub>](#inicio)
 
