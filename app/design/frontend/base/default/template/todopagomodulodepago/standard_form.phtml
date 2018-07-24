@@ -1,8 +1,38 @@
 ﻿<?php
 // /pasar todo al block
 $quoteid = Mage::getSingleton('checkout/session')->getQuoteId();
-$_code = $this->getMethodCode(); ?>
-<img src="http://www.todopago.com.ar/sites/todopago.com.ar/files/pluginstarjeta.jpg" alt="imagen_todopago" />
+$_code = $this->getMethodCode(); 
+
+//get billetera banner
+$banner = new Todopago_Modulodepago2_Block_System_Config_Source_Banners();
+$url_banners = $banner->getBanner();
+
+?>
+
+<style>
+	.form-list{
+		margin:23px 0 0 -4px;
+
+	}	
+	#logo_tp_normal{
+		margin:0 0 0 37px;
+	}
+
+	#logo_tp_billetera{
+		margin:11px 0 0 20px;
+	}
+</style>
+
+<img src="http://www.todopago.com.ar/sites/todopago.com.ar/files/pluginstarjeta.jpg" alt="imagen_todopago" id="logo_tp_normal"/>
+
+<!-- opcion billetera -->
+<ul class="form-list" id="payment_form" >
+	<input id="p_method_modulodepagowallet" value="modulodepago2" type="radio" name="payment[method]" title="Todo Pago" onclick="payment.switchMethod('modulodepago2')" class="radio" autocomplete="off">
+	<label for="p_method_modulodepago2">Billetera Virtual Todo Pago</label>
+	<img src="<?php echo($url_banners) ?>" alt="imagen_todopago" id="logo_tp_billetera"/>
+	<div style="margin-left:24px;font-size: 11px;">Pagá con tu Billetera Virtual Todo Pago y evitá cargar los datos de tu tarjeta. Solo válido para la República Argentina</div>
+</ul>
+
 <ul class="form-list" id="payment_form_<?php echo $_code; ?>"
 	style="display: none;">
 	<input type="hidden" id="tpcheckout" name='payment[tpcheckout]' value="<?php echo Mage::app()->getFrontController()->getRequest()->getControllerModule(); ?>">
@@ -85,6 +115,12 @@ payment.watch("currentMethod",function(a,b,c){
 							{
 								method:'get',
 								onSuccess: function(a) {
+									mode = "false";
+
+									if(document.getElementById('p_method_modulodepagowallet').checked){
+										mode = "true";
+									}
+
 									var body = document.body,
 										html = document.documentElement;
 
@@ -93,8 +129,9 @@ payment.watch("currentMethod",function(a,b,c){
 									$$('body > .wrapper')[0].insert("<div id='overlay'></div>");
 									$('overlay').setStyle({'height':height+'px'});
 									new Effect.Opacity('overlay',{from:0.0,to:1.0,duration:0.3,transition:Effect.Transitions.sinoidal,afterFinish:function(){
+
 											$('overlay').insert("<div id='lightbox'></div>");
-											$('lightbox').insert('<iframe width="100%" height="100%" '+ ((a.responseJSON != null) ? ('src="' + a.responseJSON.url) : ('srcdoc="' + a.responseText))+'"></iframe>');
+											$('lightbox').insert('<iframe width="100%" height="100%" '+ ((a.responseJSON != null) ? ('src="' + a.responseJSON.url + 'mode/'+mode) : ('srcdoc="' + a.responseText))+'"></iframe>');
 									}});
 								},
 								onFailure: function(data) {
@@ -117,3 +154,4 @@ payment.watch("currentMethod",function(a,b,c){
 <?php endif; ?>
 <?php endif; ?>
 </ul>
+

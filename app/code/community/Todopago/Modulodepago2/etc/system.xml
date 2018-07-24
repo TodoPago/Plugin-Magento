@@ -155,241 +155,268 @@
 						    <show_in_store>1</show_in_store>
 						</cart_enabled>
 
-					<!--	<gmaps translate="label">
+
+						<!--terms translate="label">
+						    <class>terms-conditions</class>
+						    <frontend_type>checkboxes</frontend_type>
+						    <validate>required-entry</validate>
+						    <frontend_model>modulodepago2/system_config_form_terms</frontend_model>
+						    <sort_order>15</sort_order>
+						    <show_in_default>1</show_in_default>
+						    <show_in_website>0</show_in_website>
+						    <show_in_store>0</show_in_store>
+						</terms-->
+
+						<!-- banner billetera -->
+						<banners translate="label">
+						    <label>Banner Billetera</label>
+						    <frontend_type>checkboxes</frontend_type>
+						    <comment>Seleccione el banner que desea mostrar para billetera</comment>
+						    <!--validate>required-entry</validate-->
+						    <frontend_model>modulodepago2/system_config_source_banners</frontend_model>
+						    <!--sbackend_model>modulodepago2/system_config_source_banners</backend_model-->
+						    <sort_order>22</sort_order>
+						    <show_in_default>1</show_in_default>
+						    <show_in_website>0</show_in_website>
+						    <show_in_store>0</show_in_store>
+						</banners>
+
+						<!--banner_value translate="label">
+							<label></label>
+							<frontend_type>text</frontend_type>
 							<comment></comment>
-							<label>Formatear direcciones con google maps</label>
-							<frontend_type>select</frontend_type>
-							<source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>22</sort_order>
+							<sort_order>23</sort_order>
 							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-						</gmaps> -->
-						
+							<show_in_website>0</show_in_website>
+							<show_in_store>0</show_in_store>
+						</banner_value-->
+						<!-- fin banner billetera -->
+
 						<label_ambiente>
 							<label>CONFIGURACION - AMBIENTE DEVELOPERS / PRODUCCION</label>
 							<frontend_type>label</frontend_type>
-							<sort_order>23</sort_order>
+							<sort_order>24</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</label_ambiente>
 
-									<credential_button  translate="label">
-										<label><![CDATA[<b><u>Obtener Credenciales</b></u>]]></label>
-										<button_label>Produccion</button_label>
-										<button_url><![CDATA[adminhtml/credential/production]]></button_url>
-										<sandbox_button_label>Developers</sandbox_button_label>
-										<sandbox_button_url><![CDATA[adminhtml/credential/developers]]></sandbox_button_url>
-										<sort_order>24</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>								
-										<frontend_model>modulodepago2/system_config_credential_front</frontend_model>
-									</credential_button>
-									<label_produccion>
-										<label><![CDATA[<b><u>Ambiente Producción:
-										</b></u>]]></label>
-										<frontend_type>label</frontend_type>
-										<sort_order>25</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</label_produccion>
-									<idstore>
-										<label>Nro. de Comercio - Merchant ID</label>
-										<validate>validate-length maximum-length-8
-										</validate>
-										<comment>Número de Comercio provisto por Todo Pago</comment>
-										<frontend_type>text</frontend_type>
-										<sort_order>26</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</idstore>
-									<codigo_seguridad>
-										<label>Security code</label>
-										<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
-										<frontend_type>text</frontend_type>
-										<sort_order>27</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</codigo_seguridad>
-									<apikey>
-										<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
-											<label>API Keys</label>
-											<frontend_type>text</frontend_type>
-											<sort_order>28</sort_order>
-											<show_in_default>1</show_in_default>
-											<show_in_website>1</show_in_website>
-											<show_in_store>1</show_in_store>
-									</apikey>
-									<label_test>
-										<label><![CDATA[<b><u>Ambiente Developers:
-										</b></u>]]></label>
-										<frontend_type>label</frontend_type>
-										<sort_order>29</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</label_test>
+						<credential_button  translate="label">
+							<label><![CDATA[<b><u>Obtener Credenciales</b></u>]]></label>
+							<button_label>Produccion</button_label>
+							<button_url><![CDATA[adminhtml/credential/production]]></button_url>
+							<sandbox_button_label>Developers</sandbox_button_label>
+							<sandbox_button_url><![CDATA[adminhtml/credential/developers]]></sandbox_button_url>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>								
+							<frontend_model>modulodepago2/system_config_credential_front</frontend_model>
+						</credential_button>
+						<label_produccion>
+							<label><![CDATA[<b><u>Ambiente Producción:
+							</b></u>]]></label>
+							<frontend_type>label</frontend_type>
+							<sort_order>26</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</label_produccion>
+						<idstore>
+							<label>Nro. de Comercio - Merchant ID</label>
+							<validate>validate-length maximum-length-8
+							</validate>
+							<comment>Número de Comercio provisto por Todo Pago</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>27</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</idstore>
+						<codigo_seguridad>
+							<label>Security code</label>
+							<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>28</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</codigo_seguridad>
+						<apikey>
+							<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
+								<label>API Keys</label>
+								<frontend_type>text</frontend_type>
+								<sort_order>29</sort_order>
+								<show_in_default>1</show_in_default>
+								<show_in_website>1</show_in_website>
+								<show_in_store>1</show_in_store>
+						</apikey>
+						<label_test>
+							<label><![CDATA[<b><u>Ambiente Developers:
+							</b></u>]]></label>
+							<frontend_type>label</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</label_test>
 
-									<idstore_test>
-										<label>Nro. de Comercio - Merchant ID (Developers)</label>
-										<validate>validate-length  maximum-length-8
-										</validate>
-										<comment>Número de Comercio provisto por Todo Pago</comment>
-										<frontend_type>text</frontend_type>
-										<sort_order>30</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</idstore_test>
+						<idstore_test>
+							<label>Nro. de Comercio - Merchant ID (Developers)</label>
+							<validate>validate-length  maximum-length-8
+							</validate>
+							<comment>Número de Comercio provisto por Todo Pago</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>31</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</idstore_test>
 
-									<codigo_seguridad_test>
-										<label>Security code (Developers)</label>
-										<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
-										<frontend_type>text</frontend_type>
-										<sort_order>31</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</codigo_seguridad_test>
-									<apikey_test>
-										<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
-											<label>API Keys</label>
-											<frontend_type>text</frontend_type>
-											<sort_order>32</sort_order>
-											<show_in_default>1</show_in_default>
-											<show_in_website>1</show_in_website>
-											<show_in_store>1</show_in_store>
-									</apikey_test>
-
-
-							<todopago_avanzada>
-								<label>CONFIGURACION - ESTADOS DEL PEDIDO</label>
-								<frontend_type>label</frontend_type>
+						<codigo_seguridad_test>
+							<label>Security code (Developers)</label>
+							<comment>API Keys sin PRISMA/TODOPAGO y sin espacio</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>32</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</codigo_seguridad_test>
+						<apikey_test>
+							<comment>Ingresar el contenido del campo API Keys (Credenciales) del Portal de TodoPago. Ejemplo: "PRISMA 912EC803B2CE49E4A541068D495AB570"</comment>
+								<label>API Keys</label>
+								<frontend_type>text</frontend_type>
 								<sort_order>33</sort_order>
 								<show_in_default>1</show_in_default>
 								<show_in_website>1</show_in_website>
 								<show_in_store>1</show_in_store>
+						</apikey_test>
+
+
+						<todopago_avanzada>
+							<label>CONFIGURACION - ESTADOS DEL PEDIDO</label>
+							<frontend_type>label</frontend_type>
+							<sort_order>34</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
 						</todopago_avanzada>
 
-									<order_status translate="label">
-										<label>Estado del Pedido cuando la transacción esta "en proceso"
-										</label>
-										<comment>Para pagos con tarjetas de crédito mientras espera respuesta del gateway</comment>
-										<frontend_type>select</frontend_type>
-										<source_model>modulodepago2/system_config_source_pendingstatuses
-										</source_model>
-										<sort_order>34</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</order_status>
 
-									<order_aprov translate="label">
-										<label>Estado del Pedido cuando la transacción fue Aprobada por el medio de pago
-										</label>
-										<comment>Estado final de la informado por el medio de pago</comment>
-										<frontend_type>select</frontend_type>
-										<source_model>modulodepago2/system_config_source_processingstatuses
-										</source_model>
-										<sort_order>35</sort_order>
-										<show_in_default>1</show_in_default>
-										<show_in_website>1</show_in_website>
-										<show_in_store>1</show_in_store>
-									</order_aprov>
+						<order_status translate="label">
+							<label>Estado del Pedido cuando la transacción esta "en proceso"
+							</label>
+							<comment>Para pagos con tarjetas de crédito mientras espera respuesta del gateway</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_pendingstatuses
+							</source_model>
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_status>
 
-								<estado_offline>
-									<label>Estado del Pedido para "Cupon Emitido Pendiente de Pago"
-									</label>
-									<comment></comment>
-									<frontend_type>select</frontend_type>
-									<source_model>adminhtml/system_config_source_order_status
-									</source_model>
-									<sort_order>36</sort_order>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</estado_offline>
+						<order_aprov translate="label">
+							<label>Estado del Pedido cuando la transacción fue Aprobada por el medio de pago
+							</label>
+							<comment>Estado final de la informado por el medio de pago</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>modulodepago2/system_config_source_processingstatuses
+							</source_model>
+							<sort_order>36</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</order_aprov>
 
-								<estado_denegada>
-									<label>Estado del pedido cuando la transacción fue Rechazada por el medio de pago
-									</label>
-									<comment>Cuando por cualquier motivo la transacción fue denegada</comment>
-									<frontend_type>select</frontend_type>
-									<source_model>adminhtml/system_config_source_order_status
-									</source_model>
-									<sort_order>37</sort_order>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</estado_denegada>
+						<estado_offline>
+							<label>Estado del Pedido para "Cupon Emitido Pendiente de Pago"
+							</label>
+							<comment></comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status
+							</source_model>
+							<sort_order>37</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</estado_offline>
 
-												
+						<estado_denegada>
+							<label>Estado del pedido cuando la transacción fue Rechazada por el medio de pago
+							</label>
+							<comment>Cuando por cualquier motivo la transacción fue denegada</comment>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status
+							</source_model>
+							<sort_order>38</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</estado_denegada>
+		
 						<todopago_servicio>
 							<label>CONFIGURACION - SERVICIO</label>
 							<frontend_type>label</frontend_type>
-							<sort_order>40</sort_order>
+							<sort_order>39</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
 						</todopago_servicio>
-								<settimeoutvalue translate="label">
-									<label>Time Out del Servicio de Pago
-									</label>
-									<frontend_type>text</frontend_type>
-									<sort_order>41</sort_order>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</settimeoutvalue>
-								<certificado_pem translate="label">
-									<label>ruta donde se encuentra el certificado</label>
-									<frontend_type>text</frontend_type>
-									<sort_order>42</sort_order>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</certificado_pem>
-								<proxyhost translate="label">
-									<label>Proxy URL</label>
-									<comment>Dato adicional en los casos que se utilice algún proxy</comment>
-									<sort_order>43</sort_order>
-									<frontend_type>text</frontend_type>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</proxyhost>
-								
-								<proxyport translate="label">
-									<label>Proxy Port</label>
-									<sort_order>44</sort_order>
-									<frontend_type>text</frontend_type>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</proxyport>
-								
-								<proxyuser translate="label">
-									<label>Proxy User</label>
-									<frontend_type>text</frontend_type>
-									<show_in_default>1</show_in_default>
-									<sort_order>45</sort_order>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-								</proxyuser>
-								
-								<proxypassword translate="label">
-									<label>Proxy Password</label>
-									<frontend_type>text</frontend_type>
-									<show_in_default>1</show_in_default>
-									<show_in_website>1</show_in_website>
-									<show_in_store>1</show_in_store>
-									<sort_order>46</sort_order>
-								</proxypassword>				
+
+						<settimeoutvalue translate="label">
+							<label>Time Out del Servicio de Pago
+							</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</settimeoutvalue>
+						<certificado_pem translate="label">
+							<label>ruta donde se encuentra el certificado</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>41</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</certificado_pem>
+						<proxyhost translate="label">
+							<label>Proxy URL</label>
+							<comment>Dato adicional en los casos que se utilice algún proxy</comment>
+							<sort_order>42</sort_order>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</proxyhost>
+						
+						<proxyport translate="label">
+							<label>Proxy Port</label>
+							<sort_order>43</sort_order>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</proxyport>
+						
+						<proxyuser translate="label">
+							<label>Proxy User</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<sort_order>44</sort_order>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</proxyuser>
+						
+						<proxypassword translate="label">
+							<label>Proxy Password</label>
+							<frontend_type>text</frontend_type>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<sort_order>45</sort_order>
+						</proxypassword>				
 					</fields>
 				</modulodepago2>
 			</groups>

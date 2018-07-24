@@ -1,0 +1,28 @@
+<style>
+	.control input[type="radio"] {
+		vertical-align: middle;
+	}
+
+	.control img{
+		margin:1px0 0 0 0;
+		vertical-align: middle;
+	}
+</style>     			
+<ul id="banner_list">
+   	<?php 
+   		$selectedid = $this->getValue();
+
+        if($selectedid == "")
+            $selectedid = 1;
+        
+   		foreach ($this->getList() as $id => $url){ 
+            ($id == $selectedid)? $check = "checked='checked'" : $check = "";
+   	?>
+        <li class='control'>
+            <input type='radio' name='groups[modulodepago2][fields][banners][value]' value='<?php echo($id) ?>' <?php echo($check) ?> >
+            <img src='<?php echo($url) ?>' alt='banner_todopago_<?php echo($id) ?>' width='280'/>
+        </li>
+    <?php } ?>
+</ul> 
+
+

@@ -191,11 +191,14 @@
 	    var poweredLogo = document.getElementById('tp-powered-img');
 	    var emptyImg = "<?php echo $imgPath; ?>/empty.png";
 	    var poweredLogoUrl = "<?php echo $imgPath; ?>/";
-    	    var switchPei = tpformJquery("#switch-pei");
-    	    var sliderText = tpformJquery("#slider-text");
-    	    var peiCbx = tpformJquery("#peiCbx");
-        
-    	console.log(poweredLogoUrl);
+	    var switchPei = tpformJquery("#switch-pei");
+	    var sliderText = tpformJquery("#slider-text");
+	    var peiCbx = tpformJquery("#peiCbx");
+
+    	//get frame mode value
+    	urliframe = document.location.href;
+		spliturl = urliframe.split("/");
+    	var frame_mode = spliturl[spliturl.length-1];
 
     	//card logo image
 	    var idTarjetas = {
@@ -293,8 +296,12 @@
 	        }, 2000);
 	        
 	        setTimeout(function () {
-	            tpformJquery("#tpForm").fadeTo('fast', 1);
-	            tpformJquery(".header_info").fadeTo('fast', 1);
+	            tpformJquery("#btn_Billetera").html('Iniciar Sesión');
+	            if(frame_mode == "true"){
+	            	getFormWAlletMode();
+	            }else{
+	            	getFormMode();
+	            }
 	        }, 2200);
 	    }
 
@@ -444,6 +451,19 @@
 	            defaultTipoDoc: defDniType
 	        });
 	    }
+
+	   	function getFormMode() {
+	       	tpformJquery("#tpForm").fadeTo('fast', 1);
+	        tpformJquery(".header_info").fadeTo('fast', 1);
+	    }
+
+	    function getFormWAlletMode() {
+	    	tpformJquery("#tpForm").fadeTo('fast', 1);
+	        tpformJquery(".header_info").fadeTo('fast', 1);
+	        tpformJquery(".billetera_tp").hide();
+	        tpformJquery('#btn_Billetera').click();
+	    }
+	    
 	</script>
 </body>
 
